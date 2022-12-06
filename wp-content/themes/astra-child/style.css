@@ -1,0 +1,296 @@
+/*
+Theme Name:   Astra Child
+Theme URI:    http://example.com/astra-child/
+Description:  Astra Child Theme 
+Author:   	Allyson Smith
+Author URI:   http://example.com
+Template: 	astra
+Version:      3.8.5
+Tags:     	custom-menu, custom-logo, entertainment, one-column, two-columns, left-sidebar, e-commerce, right-sidebar, custom-colors, editor-style, featured-images, full-width-template, microformats, post-formats, rtl-language-support, theme-options, threaded-comments, translation-ready, blog
+Text Domain:  astra-child
+*/
+
+@import url("https://use.typekit.net/oza5oju.css");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap");
+
+/*--- General Styles ----*/
+/* fonts */
+
+body {
+  font-family: "poppins", sans-serif;
+  font-size: 1em;
+}
+
+h1,
+h2 {
+  font-family: "bc-alphapipe", sans-serif;
+  font-size: 2em;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+/* gets rid of gap between blocks */
+body {
+  --wp--style--block-gap: 0;
+  margin-block-start: 0;
+}
+
+body .is-layout-constrained > * + * {
+  margin-block-start: 0;
+}
+
+/* allows images to be full width, no border */
+.ast-container {
+  padding: 0;
+  width: 100%;
+  max-width: none;
+}
+
+/* --------- Header ------- */
+.site-primary-header-wrap {
+  background-color: #f8f7f3;
+}
+
+/* -------- Front Page --------- */
+/* General */
+
+.site-content {
+  background-color: #f8f7f3;
+}
+
+.hero-content {
+  width: 100%;
+}
+
+.main-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.hero-images,
+.recent-builds {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hero */
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 50px;
+}
+
+.hero-logo img {
+  margin-bottom: 25px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.hero-images {
+  background-color: #5b8dcb;
+}
+
+.hero-image,
+.recent-build {
+  width: 100%;
+}
+
+.shop-entrance {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 75px 0;
+  margin: 0;
+  background-image: url(./assets/img/Middlebrick-logo.png);
+  background-repeat: no-repeat;
+  background-size: 75px;
+  background-position-x: 50%;
+  background-position-y: 50%;
+}
+
+.shop-entrance img {
+  width: 55%;
+  max-width: 400px;
+  height: auto;
+  object-fit: cover;
+  /* animation : */
+  animation-name: rotate;
+  -webkit-animation-name: rotate;
+  animation-duration: 30s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Featured Work */
+
+h2 {
+  width: 90%;
+}
+
+.recent-builds-heading,
+.shop-link-heading,
+.random-builds-heading {
+  width: 100%;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recent-builds-heading {
+  background-color: #edd59b;
+}
+
+.shop-link-heading {
+  background-color: #dbc6e7;
+  text-align: right;
+}
+
+/* ------ About ------ */
+.about-wrapper {
+  width: 90%;
+  padding: 50px 0 75px 0;
+}
+
+.about-wrapper h2 {
+  width: 100%;
+}
+
+.about-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
+}
+
+.about-text-container p {
+  margin-top: 20px;
+}
+
+/* ------ Random Builds ------ */
+.random-builds-heading {
+  background-color: #ffa280;
+  text-align: left;
+}
+
+#sb_instagram {
+  background-color: #ffa280;
+}
+
+.sb_instagram_header {
+  background-color: #ffa280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 0;
+  display: none;
+}
+
+.sbi_header_link {
+  width: 90%;
+}
+
+.sbi_header_link h3 {
+  font-family: "bc-alphapipe", sans-serif;
+  font-weight: 700;
+}
+
+#sbi_load {
+  display: none;
+}
+
+/* ------ Footer ------ */
+
+footer {
+  background-color: black;
+}
+
+.site-primary-footer-wrap {
+  border: none;
+  border-top-width: 0;
+  border-top-color: black;
+}
+
+/* ------ Tablet ------ */
+@media screen and (min-width: 550px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-image,
+  .shop-entrance,
+  .recent-build {
+    flex: 1;
+  }
+
+  .shop-entrance {
+    padding: 0;
+    background-size: 50px;
+  }
+
+  .recent-builds-heading h2,
+  .random-builds-heading h2,
+  .shop-link-heading h2 {
+    width: 85%;
+  }
+
+  .about-wrapper {
+    width: 85%;
+    padding: 75px 0 100px 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .shop-entrance {
+    background-size: 65px;
+  }
+}
+
+/* ------ Desktop ------ */
+@media screen and (min-width: 1024px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  .recent-builds-heading,
+  .shop-link-heading,
+  .random-builds-heading {
+    height: 100px;
+  }
+
+  .about-wrapper {
+    max-width: 1000px;
+    padding: 120px 0 150px 0;
+  }
+
+  .shop-entrance {
+    background-size: 100px;
+  }
+}
