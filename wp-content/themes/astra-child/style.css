@@ -46,17 +46,11 @@ body .is-layout-constrained > * + * {
   max-width: none;
 }
 
+/* ---------- General ----------- */
+
 /* --------- Header ------- */
-.site-primary-header-wrap {
-  background-color: #f8f7f3;
-}
 
 /* -------- Front Page --------- */
-/* General */
-
-.site-content {
-  background-color: #f8f7f3;
-}
 
 .hero-content {
   width: 100%;
@@ -68,6 +62,11 @@ body .is-layout-constrained > * + * {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+}
+
+.page-id-2 .site-primary-header-wrap,
+.page-id-2 .main-content {
+  background: #f8f7f3;
 }
 
 .hero-images,
@@ -232,6 +231,25 @@ footer {
   border: none;
   border-top-width: 0;
   border-top-color: black;
+}
+
+/* -------- SHOP--------- */
+/* General */
+.woo-commerce .site-header .main-header-bar {
+  background: #ffffff;
+}
+
+.woo-commerce .site-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+}
+
+.ast-woocommerce-container {
+  width: 90%;
+  max-width: 900px;
 }
 
 /* ------ Tablet ------ */
