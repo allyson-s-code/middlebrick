@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore SlevomatCodingStandard.TypeHints.DeclareStrictTypes.DeclareStrictTypesMissing
 
 namespace MailPoet\Analytics;
 
@@ -34,6 +34,7 @@ use MailPoet\Services\AuthorizedEmailsController;
 use MailPoet\Settings\Pages;
 use MailPoet\Settings\SettingsController;
 use MailPoet\Settings\TrackingConfig;
+use MailPoet\Subscribers\ConfirmationEmailCustomizer;
 use MailPoet\Subscribers\NewSubscriberNotificationMailer;
 use MailPoet\Subscribers\SubscriberListingRepository;
 use MailPoet\Tags\TagRepository;
@@ -207,6 +208,7 @@ class Reporter {
       'Number of segments with multiple conditions' => $this->segmentsRepository->getSegmentCountWithMultipleFilters(),
       'Support tier' => $this->subscribersFeature->hasPremiumSupport() ? 'premium' : 'free',
       'Unauthorized email notice shown' => !empty($this->settings->get(AuthorizedEmailsController::AUTHORIZED_EMAIL_ADDRESSES_ERROR_SETTING)),
+      'Sign-up confirmation: Confirmation Template > using html email editor template' => (boolean)$this->settings->get(ConfirmationEmailCustomizer::SETTING_ENABLE_EMAIL_CUSTOMIZER, false),
     ];
 
     $result = array_merge(

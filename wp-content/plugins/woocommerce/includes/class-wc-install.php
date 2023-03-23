@@ -217,6 +217,18 @@ class WC_Install {
 			'wc_update_700_remove_download_log_fk',
 			'wc_update_700_remove_recommended_marketing_plugins_transient',
 		),
+		'7.2.1' => array(
+			'wc_update_721_adjust_new_zealand_states',
+			'wc_update_721_adjust_ukraine_states',
+		),
+		'7.2.2' => array(
+			'wc_update_722_adjust_new_zealand_states',
+			'wc_update_722_adjust_ukraine_states',
+		),
+		'7.5.0' => array(
+			'wc_update_750_add_columns_to_order_stats_table',
+			'wc_update_750_disable_new_product_management_experience',
+		),
 	);
 
 	/**
@@ -822,17 +834,24 @@ class WC_Install {
 		global $wpdb;
 		$obsolete_notes_names = array(
 			'wc-admin-welcome-note',
+			'wc-admin-insight-first-product-and-payment',
 			'wc-admin-store-notice-setting-moved',
 			'wc-admin-store-notice-giving-feedback',
+			'wc-admin-first-downloadable-product',
 			'wc-admin-learn-more-about-product-settings',
+			'wc-admin-adding-and-managing-products',
 			'wc-admin-onboarding-profiler-reminder',
 			'wc-admin-historical-data',
+			'wc-admin-manage-store-activity-from-home-screen',
 			'wc-admin-review-shipping-settings',
 			'wc-admin-home-screen-feedback',
+			'wc-admin-update-store-details',
 			'wc-admin-effortless-payments-by-mollie',
 			'wc-admin-google-ads-and-marketing',
+			'wc-admin-insight-first-sale',
 			'wc-admin-marketing-intro',
 			'wc-admin-draw-attention',
+			'wc-admin-welcome-to-woocommerce-for-store-users',
 			'wc-admin-need-some-inspiration',
 			'wc-admin-choose-niche',
 			'wc-admin-start-dropshipping-business',
@@ -1297,6 +1316,8 @@ CREATE TABLE {$wpdb->prefix}wc_order_stats (
 	parent_id bigint(20) unsigned DEFAULT 0 NOT NULL,
 	date_created datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
 	date_created_gmt datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+	date_paid datetime DEFAULT '0000-00-00 00:00:00',
+	date_completed datetime DEFAULT '0000-00-00 00:00:00',
 	num_items_sold int(11) DEFAULT 0 NOT NULL,
 	total_sales double DEFAULT 0 NOT NULL,
 	tax_total double DEFAULT 0 NOT NULL,

@@ -1,9 +1,9 @@
 === MailPoet - emails and newsletters in WordPress ===
 Contributors: mailpoet
 Tags: email, email marketing, post notification, woocommerce emails, email automation, newsletter, newsletter builder, newsletter subscribers
-Requires at least: 5.8
+Requires at least: 5.9
 Tested up to: 6.1
-Stable tag: 4.1.0
+Stable tag: 4.8.1
 Requires PHP: 7.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -218,6 +218,108 @@ Check our [Knowledge Base](https://kb.mailpoet.com) or contact us through our [s
 6. WooCommerce emails
 
 == Changelog ==
+
+= 4.8.1 - 2023-03-14 =
+* Added: Home page;
+* Improved: custom field validation errors are translated;
+* Fixed: error when sorting sending status page by subscriber name.
+
+= 4.8.0 - 2023-03-06 =
+* Added: option to run an automation multiple times for the same subscriber;
+* Improved: when AutomateWoo is installed, only show one opt-in checkbox on the checkout;
+* Fixed: coupon code block is empty when adding to an existing email;
+* Fixed: "call to undefined function MailPoet\API\JSON\error_log()".
+
+= 4.7.1 - 2023-02-27 =
+* Added: filter allowing to configure PHPMailer when sending via SMTP;
+* Added: a coupon block in email editor;
+* Added: notice when a MailPoet subscription is pending approval;
+* Improved: Starter plan users are directed to upgrade their plan from the Upgrade page;
+* Improved: email templates now include coupon block;
+* Fixed: inactive subscribers weren't recalculated since August 2022. They'll be again recalculated within one week after updating. Sorry about this bug.
+
+= 4.7.0 - 2023-02-20 =
+* Updated: minimum required WordPress version to 5.9;
+* Updated: minimum required WooCommerce version to 7.2;
+* Improved: more explanatory MailPoet task in WooCommerce onboarding;
+* Improved: prevent form listing from crashing when form settings data are missing or malformed;
+* Improved: close button of form popup is focus-able to improve accessibility;
+* Fixed: conflict when loading mixpanel library;
+* Fixed: choices from first steps of welcome wizard are forgotten when MailPoet Sending Service is activated;
+* Fixed: draft products are not showing in email editor.
+
+= 4.6.2 - 2023-02-14 =
+* Improved: explain MailPoet Sending Service during onboarding;
+* Improved: when a subscription is pending approval, you can now recheck the status directly from the notice;
+* Changed: removed "Export" item from the main MailPoet menu;
+* Fixed: after finishing WooCommerce onboarding, the user is redirected to MailPoet;
+* Fixed: migration class not found when data corrupted by another plugin;
+* Fixed: misaligned buttons in "Relax" form template;
+* Fixed: broken built-in CAPTCHA in Safari on macOS.
+
+= 4.6.1 - 2023-02-06 =
+* Added: "Copy to clipboard" button next to System Info;
+* Improved: warn users on PHP 7.3 about outdated PHP version;
+* Improved: MailPoet now uses a from address to test sending emails instead of "blackhole@mailpoet.com";
+* Improved: post images will now use image attachments' alt text for improved accessibility;
+* Changed: now even logged in user requires a valid token to unsubscribe;
+* Changed: Editor role now has access to Automations;
+* Fixed: color setting in email editor is not saved.
+
+= 4.6.0 - 2023-01-31 =
+* Added: anonymized and opt-in tracking of revenue per email campaign;
+* Added: subscription confirmation emails can be previewed during editing;
+* Added: a new item in WooCommerce Task List to finish MailPoet setup;
+* Improved: list visibility explanation when editing a list;
+* Changed: added option to rerun two specific migrations if they failed in the past;
+* Changed: [site:homepage_link] now renders as link in email editor, introduced new [site:homepage_url] shortcode to get just the URL;
+* Fixed: UI issues on WordPress.com;
+* Fixed: multiple popup signup forms when products are added via shortcode;
+* Fixed: multiple signup form on WooCommerce Products page;
+* Fixed: multiple vertical scrollbars in Form editor;
+* Fixed: custom field block hidden behind help icon in Form editor.
+
+= 4.5.2 - 2023-01-25 =
+* Fixed: issue with new installations of MailPoet on websites with WooCommerce.
+
+= 4.5.1 - 2023-01-23 =
+* Added: a new landing page to explain MailPoet to new users;
+* Added: survey when the plugin is deactivated.
+
+= 4.5.0 - 2023-01-17 =
+* Improved: translate error messages from MailPoet Sending Service;
+* Improved: show a loading state when automation is being created;
+* Fixed: shortcodes inserter in the email editor not working.
+
+= 4.4.0 - 2023-01-10 =
+* Updated: TinyMCE editor to v6;
+* Improved: log PHP errors in JSON API calls;
+* Fixed: prevent paused sending without an error message;
+* Fixed: horizontal scrollbar in automation actions popup.
+
+= 4.3.1 - 2023-01-03 =
+* Improved: welcome wizard first step design;
+* Improved: error handling for confirmation emails;
+* Fixed: occasional error on column detection during plugin update;
+* Fixed: occasional call to undefined function error during plugin update.
+
+= 4.3.0 - 2022-12-19 =
+* Added: confirmation email can be designed in email editor;
+* Improved: nicer and more understandable onboarding.
+
+= 4.2.0 - 2022-12-12 =
+* Added: link to purchase a MailPoet plan from Key Activation page;
+* Improved: support for ANSI_QUOTES sql mode;
+* Improved: 1-click unsubscribe is also tracked as a click;
+* Improved: "Maximum execution time" error is now more descriptive in MailPoet > Help > System Status;
+* Changed: email language in HTML is set to site's language (Settings > General) instead of English.
+
+= 4.1.1 - 2022-12-05 =
+* Improved: the 3rd-party libraries description in Welcome Wizard;
+* Improved: display a warning if sending function is not available;
+* Fixed: Column not found error experienced by some users;
+* Fixed: wc_get_page_id causes an error when WooCommerce is not installed;
+* Fixed: block settings in email editor look broken.
 
 = 4.1.0 - 2022-11-28 =
 * Improved: don't automatically activate MailPoet Sending Service for Creator plans;

@@ -8,8 +8,8 @@
 use Automattic\Jetpack\Connection\REST_Connector;
 use Automattic\Jetpack\Plugins_Installer;
 use Automattic\Jetpack\Stats\WPCOM_Stats;
+use Automattic\Jetpack\Stats_Admin\Main as Stats_Admin_Main;
 use Automattic\Jetpack\Status;
-
 /**
  * This is the base class for every Core API endpoint Jetpack uses.
  */
@@ -777,16 +777,14 @@ class Jetpack_Core_API_Data extends Jetpack_Core_API_XMLRPC_Consumer_Endpoint {
 						if ( ! $plan->supports_instant_search() ) {
 							$updated = new WP_Error( 'instant_search_not_supported', 'Instant Search is not supported by this site', array( 'status' => 400 ) );
 							$error   = $updated->get_error_message();
+						} elseif ( ! Automattic\Jetpack\Search\Options::is_instant_enabled() ) {
+							$updated = new WP_Error( 'instant_search_disabled', 'Instant Search is disabled', array( 'status' => 400 ) );
+							$error   = $updated->get_error_message();
 						} else {
-							if ( ! Automattic\Jetpack\Search\Options::is_instant_enabled() ) {
-								$updated = new WP_Error( 'instant_search_disabled', 'Instant Search is disabled', array( 'status' => 400 ) );
-								$error   = $updated->get_error_message();
-							} else {
-								$blog_id  = Automattic\Jetpack\Search\Helper::get_wpcom_site_id();
-								$instance = Automattic\Jetpack\Search\Instant_Search::instance( $blog_id );
-								$instance->auto_config_search();
-								$updated = true;
-							}
+							$blog_id  = Automattic\Jetpack\Search\Helper::get_wpcom_site_id();
+							$instance = Automattic\Jetpack\Search\Instant_Search::instance( $blog_id );
+							$instance->auto_config_search();
+							$updated = true;
 						}
 					}
 					break;
@@ -881,6 +879,11 @@ class Jetpack_Core_API_Data extends Jetpack_Core_API_XMLRPC_Consumer_Endpoint {
 						: true;
 					break;
 
+				case 'enable_odyssey_stats':
+					$updated = Stats_Admin_Main::update_new_stats_status( $value );
+
+					break;
+
 				case 'akismet_show_user_comments_approved':
 					// Save Akismet option '1' or '0' like it's done in akismet/class.akismet-admin.php.
 					$updated = get_option( $option ) != $value // phpcs:ignore Universal.Operators.StrictComparisons.LooseNotEqual
@@ -957,7 +960,7 @@ class Jetpack_Core_API_Data extends Jetpack_Core_API_XMLRPC_Consumer_Endpoint {
 					break;
 
 				case 'onboarding':
-					jetpack_require_lib( 'widgets' );
+					require_once JETPACK__PLUGIN_DIR . '_inc/lib/widgets.php';
 					// Break apart and set Jetpack onboarding options.
 					$result = $this->process_onboarding( (array) $value );
 					if ( empty( $result ) ) {
@@ -1033,7 +1036,6 @@ class Jetpack_Core_API_Data extends Jetpack_Core_API_XMLRPC_Consumer_Endpoint {
 			// There was an error because some options were updated but others were invalid or failed to update.
 			return new WP_Error( 'some_updated', esc_html( $error ), array( 'status' => 400 ) );
 		}
-
 	}
 
 	/**
@@ -1817,6 +1819,8 @@ class Jetpack_Core_API_Module_Data_Endpoint {
 		return current_user_can( 'jetpack_admin_page' );
 	}
 }
+
+// phpcs:disable Universal.Files.SeparateFunctionsFromOO.Mixed -- TODO: Move these functions to some other file.
 
 /**
  * Actions performed only when Gravatar Hovercards is activated through the endpoint call.

@@ -5,7 +5,7 @@ Tags: Elementor,Beaver Builder,Templates,Gutenberg,Block Editor,Astra Starter Si
 Requires at least: 4.4
 Requires PHP: 5.3
 Tested up to: 6.1
-Stable tag: 3.1.18
+Stable tag: 3.1.27
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -133,12 +133,39 @@ We are open to suggestions and would love to work on topics that our users are l
 
 == Changelog ==
 
+v3.1.27 - 24-February-2023
+- Fix: Templates library won't refresh after the sync process.
+
+v3.1.26 - 22-February-2023
+- Fix: Plugin installation from WordPress plugins dashboard fails when Starter Template is activated.
+
+v3.1.25 - 22-February-2023
+- Improvement: Hardened the security.
+
+v3.1.24 - 26-January-2023
+- Improvement: Hardened the security.
+
+v3.1.23 - 19-January-2023
+- Improvement: Added extra checks while block templates import.
+
+v3.1.22 - 02-January-2023
+- Improvement: Added support for Astra theme menu position to top.
+
+v3.1.21 - 23-December-2022
+- Improvement: Added extra checks while marking a Starter Template as favorite.
+
+v3.1.20 - 12-December-2022
+- Fix: Import error for Gutenberg templates with PHP 8.x.
+
+v3.1.19 - 09-December-2022
+- Fix: Page builder not set using WP-cli command.
+
 v3.1.18 - 04-November-2022
-Fix: Compatibility to WordPress 6.1.
-Improvement: Responsive welcome banner notice on WP dashboard for fresh installation.
+- Fix: Compatibility to WordPress 6.1.
+- Improvement: Responsive welcome banner notice on WP dashboard for fresh installation.
 
 v3.1.17 - 10-October-2022
-New: Added welcome banner notice on WP dashboard for fresh installation.
+- New: Added welcome banner notice on WP dashboard for fresh installation.
 
 v3.1.16 - 12-September-2022
 - Improvement: Added compatibility for Spectra.

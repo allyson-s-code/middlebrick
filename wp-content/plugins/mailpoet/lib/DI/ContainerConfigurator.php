@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore SlevomatCodingStandard.TypeHints.DeclareStrictTypes.DeclareStrictTypesMissing
 
 namespace MailPoet\DI;
 
@@ -41,6 +41,7 @@ class ContainerConfigurator implements IContainerConfigurator {
     $container->autowire(\MailPoet\AdminPages\Pages\FormEditor::class)->setPublic(true);
     $container->autowire(\MailPoet\AdminPages\Pages\Forms::class)->setPublic(true);
     $container->autowire(\MailPoet\AdminPages\Pages\Help::class)->setPublic(true);
+    $container->autowire(\MailPoet\AdminPages\Pages\Homepage::class)->setPublic(true);
     $container->autowire(\MailPoet\AdminPages\Pages\Logs::class)->setPublic(true);
     $container->autowire(\MailPoet\AdminPages\Pages\NewsletterEditor::class)->setPublic(true);
     $container->autowire(\MailPoet\AdminPages\Pages\Newsletters::class)->setPublic(true);
@@ -52,6 +53,7 @@ class ContainerConfigurator implements IContainerConfigurator {
     $container->autowire(\MailPoet\AdminPages\Pages\SubscribersImport::class)->setPublic(true);
     $container->autowire(\MailPoet\AdminPages\Pages\WelcomeWizard::class)->setPublic(true);
     $container->autowire(\MailPoet\AdminPages\Pages\WooCommerceSetup::class)->setPublic(true);
+    $container->autowire(\MailPoet\AdminPages\Pages\Landingpage::class)->setPublic(true);
     // Analytics
     $container->autowire(\MailPoet\Analytics\Analytics::class)->setPublic(true);
     $container->autowire(\MailPoet\Analytics\Reporter::class)->setPublic(true);
@@ -75,6 +77,7 @@ class ContainerConfigurator implements IContainerConfigurator {
     $container->autowire(\MailPoet\API\JSON\v1\Forms::class)->setPublic(true);
     $container->autowire(\MailPoet\API\JSON\v1\ImportExport::class)->setPublic(true);
     $container->autowire(\MailPoet\API\JSON\v1\Mailer::class)->setPublic(true);
+    $container->autowire(\MailPoet\API\JSON\v1\Tags::class)->setPublic(true);
     $container->autowire(\MailPoet\API\JSON\v1\Newsletters::class)->setPublic(true);
     $container->autowire(\MailPoet\API\JSON\v1\NewsletterLinks::class)->setPublic(true);
     $container->autowire(\MailPoet\API\JSON\v1\NewsletterTemplates::class)->setPublic(true);
@@ -153,6 +156,7 @@ class ContainerConfigurator implements IContainerConfigurator {
     $container->autowire(\MailPoet\Automation\Integrations\Core\Actions\DelayAction::class)->setPublic(true);
     $container->autowire(\MailPoet\Automation\Integrations\Core\CoreIntegration::class)->setPublic(true);
     // Automation - MailPoet integration
+    $container->autowire(\MailPoet\Automation\Integrations\MailPoet\ContextFactory::class)->setPublic(true);
     $container->autowire(\MailPoet\Automation\Integrations\MailPoet\MailPoetIntegration::class)->setPublic(true);
     $container->autowire(\MailPoet\Automation\Integrations\MailPoet\Subjects\SegmentSubject::class)->setPublic(true)->setShared(false);
     $container->autowire(\MailPoet\Automation\Integrations\MailPoet\Subjects\SubscriberSubject::class)->setPublic(true)->setShared(false);
@@ -161,6 +165,7 @@ class ContainerConfigurator implements IContainerConfigurator {
     $container->autowire(\MailPoet\Automation\Integrations\MailPoet\Templates\AutomationBuilder::class)->setPublic(true)->setShared(false);
     $container->autowire(\MailPoet\Automation\Integrations\MailPoet\Actions\SendEmailAction::class)->setPublic(true);
     $container->autowire(\MailPoet\Automation\Integrations\MailPoet\Hooks\AutomationEditorLoadingHooks::class)->setPublic(true);
+    $container->autowire(\MailPoet\Automation\Integrations\MailPoet\Hooks\CreateAutomationRunHook::class)->setPublic(true);
     // Config
     $container->autowire(\MailPoet\Config\AccessControl::class)->setPublic(true);
     $container->autowire(\MailPoet\Config\Activator::class)->setPublic(true);
@@ -234,7 +239,6 @@ class ContainerConfigurator implements IContainerConfigurator {
     $container->autowire(\MailPoet\Cron\Workers\StatsNotifications\Scheduler::class);
     $container->autowire(\MailPoet\Cron\Workers\StatsNotifications\StatsNotificationsRepository::class)->setPublic(true);
     $container->autowire(\MailPoet\Cron\Workers\StatsNotifications\NewsletterLinkRepository::class)->setPublic(true);
-    $container->autowire(\MailPoet\Cron\Workers\SendingQueue\Migration::class)->setPublic(true);
     $container->autowire(\MailPoet\Cron\Workers\SendingQueue\Tasks\Mailer::class)->setPublic(true);
     // Cron workers
     $container->autowire(\MailPoet\Cron\Workers\Scheduler::class)->setPublic(true);
@@ -245,7 +249,6 @@ class ContainerConfigurator implements IContainerConfigurator {
     $container->autowire(\MailPoet\Cron\Workers\KeyCheck\SendingServiceKeyCheck::class)->setPublic(true);
     $container->autowire(\MailPoet\Cron\Workers\KeyCheck\PremiumKeyCheck::class)->setPublic(true);
     $container->autowire(\MailPoet\Cron\Workers\Bounce::class)->setPublic(true);
-    $container->autowire(\MailPoet\Cron\Workers\SendingQueue\Migration::class)->setPublic(true);
     $container->autowire(\MailPoet\Cron\Workers\WooCommerceSync::class)->setPublic(true);
     $container->autowire(\MailPoet\Cron\Workers\ExportFilesCleanup::class)->setPublic(true);
     $container->autowire(\MailPoet\Cron\Workers\Beamer::class)->setPublic(true);
@@ -304,11 +307,13 @@ class ContainerConfigurator implements IContainerConfigurator {
     $container->autowire(\MailPoet\Form\Util\CustomFonts::class)->setPublic(true);
     // Helpscout
     $container->autowire(\MailPoet\Helpscout\Beacon::class)->setPublic(true);
+    // Homepage
+    $container->autowire(\MailPoet\Homepage\HomepageDataController::class)->setPublic(true);
     // Listing
     $container->autowire(\MailPoet\Listing\Handler::class)->setPublic(true);
     $container->autowire(\MailPoet\Listing\PageLimit::class)->setPublic(true);
     // Logging
-    $container->autowire(\MailPoet\Logging\LoggerFactory::class);
+    $container->autowire(\MailPoet\Logging\LoggerFactory::class)->setPublic(true);
     $container->autowire(\MailPoet\Logging\LogRepository::class)->setPublic(true);
     // Notices
     $container->autowire(\MailPoet\Util\Notices\PermanentNotices::class);
@@ -367,6 +372,7 @@ class ContainerConfigurator implements IContainerConfigurator {
     $container->autowire(\MailPoet\Subscribers\ImportExport\PersonalDataExporters\NewsletterClicksExporter::class)->setPublic(true);
     $container->autowire(\MailPoet\Subscribers\Statistics\SubscriberStatisticsRepository::class);
     $container->autowire(\MailPoet\Subscribers\SubscribersCountsController::class)->setPublic(true);
+    $container->autowire(\MailPoet\Subscribers\ConfirmationEmailCustomizer::class)->setPublic(true);
     // Segments
     $container->autowire(\MailPoet\Segments\WooCommerce::class)->setPublic(true);
     $container->autowire(\MailPoet\Segments\WP::class)->setPublic(true);
@@ -456,6 +462,7 @@ class ContainerConfigurator implements IContainerConfigurator {
     $container->autowire(\MailPoet\Newsletter\Renderer\Blocks\Social::class);
     $container->autowire(\MailPoet\Newsletter\Renderer\Blocks\Spacer::class);
     $container->autowire(\MailPoet\Newsletter\Renderer\Blocks\Text::class);
+    $container->autowire(\MailPoet\Newsletter\Renderer\Blocks\Coupon::class);
     $container->autowire(\MailPoet\Newsletter\Renderer\Columns\Renderer::class)->setPublic(true);
     $container->autowire(\MailPoet\Newsletter\Renderer\Preprocessor::class)->setPublic(true);
     $container->autowire(\MailPoet\Newsletter\Renderer\Renderer::class)->setPublic(true);
@@ -479,6 +486,7 @@ class ContainerConfigurator implements IContainerConfigurator {
     $container->autowire(\MailPoet\Newsletter\Sending\SendingQueuesRepository::class)->setPublic(true);
     $container->autowire(\MailPoet\Newsletter\ViewInBrowser\ViewInBrowserController::class)->setPublic(true);
     $container->autowire(\MailPoet\Newsletter\ViewInBrowser\ViewInBrowserRenderer::class)->setPublic(true);
+    $container->autowire(\MailPoet\Newsletter\NewsletterCoupon::class)->setPublic(true);
     $container->autowire(\MailPoet\Statistics\GATracking::class)->setPublic(true);
     // Newsletter templates
     $container->autowire(\MailPoet\NewsletterTemplates\NewsletterTemplatesRepository::class)->setPublic(true);
@@ -506,9 +514,11 @@ class ContainerConfigurator implements IContainerConfigurator {
     $container->autowire(\MailPoet\WooCommerce\Subscription::class)->setPublic(true);
     $container->autowire(\MailPoet\WooCommerce\TransactionalEmailHooks::class)->setPublic(true);
     $container->autowire(\MailPoet\WooCommerce\TransactionalEmails::class)->setPublic(true);
+    $container->autowire(\MailPoet\WooCommerce\Tracker::class)->setPublic(true);
     $container->autowire(\MailPoet\WooCommerce\TransactionalEmails\Template::class)->setPublic(true);
     $container->autowire(\MailPoet\WooCommerce\TransactionalEmails\Renderer::class)->setPublic(true);
     $container->autowire(\MailPoet\WooCommerce\TransactionalEmails\ContentPreprocessor::class)->setPublic(true);
+    $container->autowire(\MailPoet\WooCommerce\CouponPreProcessor::class)->setPublic(true);
     // WordPress
     $container->autowire(\MailPoet\WP\Emoji::class)->setPublic(true);
     $container->autowire(\MailPoet\WP\Functions::class)->setPublic(true);

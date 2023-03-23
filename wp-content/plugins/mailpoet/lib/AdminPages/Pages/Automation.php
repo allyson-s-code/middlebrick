@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace MailPoet\AdminPages\Pages;
 
@@ -45,6 +45,7 @@ class Automation {
   public function render() {
     $this->assetsController->setupAutomationListingDependencies();
     $this->pageRenderer->displayPage('automation.html', [
+      'locale_full' => $this->wp->getLocale(),
       'api' => [
         'root' => rtrim($this->wp->escUrlRaw($this->wp->restUrl()), '/'),
         'nonce' => $this->wp->wpCreateNonce('wp_rest'),

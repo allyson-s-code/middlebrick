@@ -93,6 +93,11 @@ class wplc_Plugin_Admin
   public function enqueue_scripts()
   {
     wp_enqueue_script($this->plugin_name . '-admin-main', plugin_dir_url(__FILE__) . 'js/wplc-plugin-admin.js', array('jquery'), $this->version, false);
+    wp_localize_script($this->plugin_name . '-admin-main', 'ajax_object', array( 
+      'ajax_url' => admin_url('admin-ajax.php'),
+      'msg_reset_config' => htmlentities(__('Do you really want to reset 3CX Live Chat Configuration?','wp-live-chat-support')),
+      'activated' => intval(get_option('wplc_activated'))
+    ));
   }
 
   /**
@@ -108,10 +113,22 @@ class wplc_Plugin_Admin
 		if ( $file == $plugin ) {
 			return array_merge(
 				$links,
-				array( '<a target="_blank" href="https://www.3cx.com/phone-system/download-phone-system">' . __( 'Signup to StartUP', 'wp-live-chat-support' ) . '</a>' )
+				array( '<a target="_blank" href="'.wplc_generate_startup_url(false).'">' . __( 'Setup your free 3CX account', 'wp-live-chat-support' ) . '</a>' )
 			);
 		}
 		return $links;
   }  
+
+  public function check_update() {
+    $activated=get_option('wplc_activated');
+    if (isset($_REQUEST['value']) && intval($_REQUEST['value'])==1) {
+      if ($activated==0) {
+        update_option('wplc_activated',1);
+      }
+    }
+    echo ($activated==2) ? '1' : '0';
+    wp_die();
+  }
+  
 
 }

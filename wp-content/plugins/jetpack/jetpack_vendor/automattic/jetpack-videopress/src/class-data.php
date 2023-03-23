@@ -25,6 +25,30 @@ class Data {
 	}
 
 	/**
+	 * Gets the VideoPress site privacy configuration.
+	 *
+	 * @return boolean If all the videos are private on the site
+	 */
+	public static function get_videopress_videos_private_for_site() {
+		if ( defined( 'IS_WPCOM' ) && IS_WPCOM ) {
+			return boolval( get_blog_option( get_current_blog_id(), 'videopress_private_enabled_for_site', false ) );
+		} else {
+			return boolval( get_option( 'videopress_private_enabled_for_site', false ) );
+		}
+	}
+
+	/**
+	 * Gets the VideoPress Settings.
+	 *
+	 * @return array The settings as an associative array.
+	 */
+	public static function get_videopress_settings() {
+		return array(
+			'videopress_videos_private_for_site' => self::get_videopress_videos_private_for_site(),
+		);
+	}
+
+	/**
 	 * Gets the video data
 	 *
 	 * @param boolean $is_videopress - True when getting VideoPress data.
@@ -158,8 +182,12 @@ class Data {
 	 */
 	public static function get_connected_initial_state() {
 		return array(
-			'videos' => array(
+			'videos'    => array(
 				'storageUsed' => self::get_storage_used(),
+			),
+			'purchases' => array(
+				'items'      => Site::get_purchases(),
+				'isFetching' => false,
 			),
 		);
 	}
@@ -180,6 +208,23 @@ class Data {
 	}
 
 	/**
+	 * Checks if the user is able to perform actions that modify data
+	 */
+	public static function can_perform_action() {
+		if ( defined( 'IS_WPCOM' ) && IS_WPCOM ) {
+			return true;
+		}
+
+		$connection = new Connection_Manager();
+
+		return (
+			$connection->is_connected() &&
+			self::has_connected_owner() &&
+			$connection->is_user_connected()
+		);
+	}
+
+	/**
 	 * Return the initial state of the VideoPress app,
 	 * used to render initially the app in the frontend.
 	 *
@@ -192,13 +237,27 @@ class Data {
 		// Tweak local videos data.
 		$local_videos = array_map(
 			function ( $video ) {
+				$video              = (array) $video;
 				$id                 = $video['id'];
 				$media_details      = $video['media_details'];
 				$jetpack_videopress = $video['jetpack_videopress'];
+				$read_error         = null;
 
-				// Check if video is already uploaded to VideoPress.
-				$uploader                  = new Uploader( $id );
-				$is_uploaded_to_videopress = $uploader->is_uploaded();
+				// In malformed files, the media_details or jetpack_videopress properties are not arrays.
+				if ( ! is_array( $media_details ) || ! is_array( $jetpack_videopress ) ) {
+					$media_details      = (array) $media_details;
+					$jetpack_videopress = (array) $jetpack_videopress;
+					$read_error         = Upload_Exception::ERROR_MALFORMED_FILE;
+				}
+
+				// Check if video is already uploaded to VideoPress or has some error.
+				try {
+					$uploader                  = new Uploader( $id );
+					$is_uploaded_to_videopress = $uploader->is_uploaded();
+				} catch ( Upload_Exception $e ) {
+					$is_uploaded_to_videopress = false;
+					$read_error                = $e->getCode();
+				}
 
 				$upload_date = $video['date'];
 				$url         = $video['source_url'];
@@ -207,9 +266,9 @@ class Data {
 				$description = $jetpack_videopress['description'];
 				$caption     = $jetpack_videopress['caption'];
 
-				$width    = $media_details['width'];
-				$height   = $media_details['height'];
-				$duration = $media_details['length'];
+				$width    = isset( $media_details['width'] ) ? $media_details['width'] : null;
+				$height   = isset( $media_details['height'] ) ? $media_details['height'] : null;
+				$duration = isset( $media_details['length'] ) ? $media_details['length'] : null;
 
 				return array(
 					'id'                     => $id,
@@ -222,6 +281,7 @@ class Data {
 					'uploadDate'             => $upload_date,
 					'duration'               => $duration,
 					'isUploadedToVideoPress' => $is_uploaded_to_videopress,
+					'readError'              => $read_error,
 				);
 			},
 			$local_videos_data['videos']
@@ -230,24 +290,27 @@ class Data {
 		// Tweak VideoPress videos data.
 		$videos = array_map(
 			function ( $video ) {
+				$video              = (array) $video;
 				$id                 = $video['id'];
 				$guid               = $video['jetpack_videopress_guid'];
-				$media_details      = $video['media_details'];
-				$jetpack_videopress = $video['jetpack_videopress'];
+				$media_details      = (array) $video['media_details'];
+				$jetpack_videopress = (array) $video['jetpack_videopress'];
 
 				$videopress_media_details = $media_details['videopress'];
 				$width                    = $media_details['width'];
 				$height                   = $media_details['height'];
 
-				$title           = $jetpack_videopress['title'];
-				$description     = $jetpack_videopress['description'];
-				$caption         = $jetpack_videopress['caption'];
-				$rating          = $jetpack_videopress['rating'];
-				$allow_download  = $jetpack_videopress['allow_download'];
-				$privacy_setting = $jetpack_videopress['privacy_setting'];
+				$title                = $jetpack_videopress['title'];
+				$description          = $jetpack_videopress['description'];
+				$caption              = $jetpack_videopress['caption'];
+				$rating               = $jetpack_videopress['rating'];
+				$allow_download       = $jetpack_videopress['allow_download'];
+				$display_embed        = $jetpack_videopress['display_embed'];
+				$privacy_setting      = $jetpack_videopress['privacy_setting'];
+				$needs_playback_token = $jetpack_videopress['needs_playback_token'];
 
 				$original      = $videopress_media_details['original'];
-				$poster        = $privacy_setting !== 1 ? $videopress_media_details['poster'] : null;
+				$poster        = ( ! $needs_playback_token ) ? $videopress_media_details['poster'] : null;
 				$upload_date   = $videopress_media_details['upload_date'];
 				$duration      = $videopress_media_details['duration'];
 				$is_private    = $videopress_media_details['is_private'];
@@ -262,34 +325,41 @@ class Data {
 				}
 
 				return array(
-					'id'             => $id,
-					'guid'           => $guid,
-					'title'          => $title,
-					'description'    => $description,
-					'caption'        => $caption,
-					'url'            => $original,
-					'uploadDate'     => $upload_date,
-					'duration'       => $duration,
-					'isPrivate'      => $is_private,
-					'posterImage'    => $poster,
-					'allowDownload'  => $allow_download,
-					'rating'         => $rating,
-					'privacySetting' => $privacy_setting,
-					'poster'         => array(
-						'src'    => $poster,
-						'width'  => $width,
-						'height' => $height,
+					'id'                 => $id,
+					'guid'               => $guid,
+					'title'              => $title,
+					'description'        => $description,
+					'caption'            => $caption,
+					'url'                => $original,
+					'uploadDate'         => $upload_date,
+					'duration'           => $duration,
+					'isPrivate'          => $is_private,
+					'posterImage'        => $poster,
+					'allowDownload'      => $allow_download,
+					'displayEmbed'       => $display_embed,
+					'rating'             => $rating,
+					'privacySetting'     => $privacy_setting,
+					'needsPlaybackToken' => $needs_playback_token,
+					'width'              => $width,
+					'height'             => $height,
+					'poster'             => array(
+						'src' => $poster,
 					),
-					'thumbnail'      => $thumbnail,
-					'finished'       => $finished,
+					'thumbnail'          => $thumbnail,
+					'finished'           => $finished,
 				);
 			},
 			$videopress_data['videos']
 		);
 
+		$site_settings = self::get_videopress_settings();
+
 		$initial_state = array(
-			'users'       => self::get_user_data(),
-			'videos'      => array(
+			'users'        => self::get_user_data(),
+			'siteSettings' => array(
+				'videoPressVideosPrivateForSite' => $site_settings['videopress_videos_private_for_site'],
+			),
+			'videos'       => array(
 				'uploadedVideoCount'           => $videopress_data['total'],
 				'items'                        => $videos,
 				'isFetching'                   => false,
@@ -300,11 +370,11 @@ class Data {
 				),
 				'query'                        => $videopress_data['query'],
 				'_meta'                        => array(
-					'relyOnInitialState' => true,
+					'processedAllVideosBeingRemoved' => true,
+					'relyOnInitialState'             => true,
 				),
 			),
-
-			'localVideos' => array(
+			'localVideos'  => array(
 				'uploadedVideoCount'           => $local_videos_data['total'],
 				'items'                        => $local_videos,
 				'isFetching'                   => false,

@@ -160,6 +160,7 @@ class wplc_Plugin
     $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
     $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
     $this->loader->add_action('plugin_row_meta', $plugin_admin, 'add_custom_links', 10, 2 );
+    $this->loader->add_action('wp_ajax_check_update', $plugin_admin, 'check_update');
 
     $this->loader->add_action('admin_menu', $this->plugin_settings, 'setup_plugin_options_menu');
     $this->loader->add_action('admin_init', $this->plugin_settings, 'initialize_display_options');
@@ -175,6 +176,7 @@ class wplc_Plugin
   private function define_public_hooks()
   {
     $plugin_public = new wplc_Plugin_Public($this->get_plugin_name(), $this->get_version());
+    $this->loader->add_action('rest_api_init', $plugin_public, 'register_autoconfig_request');
     $this->loader->add_action('wp_footer', $plugin_public, 'add_chat_element');
     $this->loader->add_filter('script_loader_tag', $plugin_public, 'defer_callus_js', 10);
     $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles');

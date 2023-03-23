@@ -3,8 +3,8 @@
 /*
   Plugin Name: 3CX Live Chat
   Plugin URI: https://www.3cx.com/wp-live-chat/
-  Description: The easiest to use website live chat plugin. Let your visitors chat with you and increase sales conversion rates with 3CX Live Chat.
-  Version: 10.0.5
+  Description: Live chat and voice/video call for web visitors. Setup a free portal account for unlimited agents and then activate the plugin.
+  Version: 10.0.8
   Author: 3CX
   Author URI: https://www.3cx.com/wp-live-chat/
   Domain Path: /languages
@@ -50,11 +50,45 @@ function deactivate_wplc_plugin()
 register_activation_hook(__FILE__, 'activate_wplc_plugin');
 register_deactivation_hook(__FILE__, 'deactivate_wplc_plugin');
 
+function post_activate_wplc_plugin( $plugin ) {
+  global $WPLC_PLUGIN_VERSION;
+  if( $plugin == plugin_basename( __FILE__ ) ) {
+      $plugin_settings = new wplc_Admin_Settings($plugin, $WPLC_PLUGIN_VERSION);
+      $config = $plugin_settings->read_config();
+      if (!isset($config['callus_url']) || empty($config['callus_url'])) {
+        exit(wp_redirect( admin_url( '/admin.php?page=wplc_options' ) ));
+      }
+  }
+}
+add_action( 'activated_plugin', 'post_activate_wplc_plugin' );
+
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
 require plugin_dir_path(__FILE__) . 'includes/class-wplc-plugin.php';
+
+function wplc_generate_startup_url($hasemail) {
+  $url = 'https://www.3cx.com/signin-google?wordpress=1';
+  if ($hasemail){
+    $url = 'https://www.3cx.com/startup/?wordpress=1';
+  }
+  if ($hasemail) {
+    $current_user = wp_get_current_user();
+    if ($current_user){
+      $email = $current_user->user_email;    
+      if ($email){
+        $url.='&email='.urlencode($email);
+      }
+    }
+  }
+  $activated=get_option('wplc_activated');
+  $nonce=get_option('wplc_callback_nonce');
+  if (empty($activated) && !empty($nonce)) {
+    $url.='&callback='.urlencode(get_site_url().'/wp-json/wp-live-chat-support/v1/autoconfigure?nonce='.$nonce);
+  }
+  return $url;
+}
 
 /**
  * Begins execution of the plugin.

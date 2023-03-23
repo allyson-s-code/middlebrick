@@ -351,6 +351,27 @@ abstract class WC_Abstract_Order extends WC_Abstract_Legacy_Order {
 	}
 
 	/**
+	 * Get date_modified.
+	 *
+	 * @param  string $context View or edit context.
+	 * @return WC_DateTime|NULL object if the date is set or null if there is no date.
+	 */
+	public function get_date_paid( $context = 'view' ) {
+		return $this->get_prop( 'date_paid', $context );
+	}
+
+	/**
+	 * Get date_modified.
+	 *
+	 * @param  string $context View or edit context.
+	 * @return WC_DateTime|NULL object if the date is set or null if there is no date.
+	 */
+	public function get_date_completed( $context = 'view' ) {
+		return $this->get_prop( 'date_completed', $context );
+	}
+
+
+	/**
 	 * Return the order statuses without wc- internal prefix.
 	 *
 	 * @param  string $context View or edit context.
@@ -417,7 +438,7 @@ abstract class WC_Abstract_Order extends WC_Abstract_Legacy_Order {
 	}
 
 	/**
-	 * Gets order grand total. incl. taxes. Used in gateways.
+	 * Gets order grand total including taxes, shipping cost, fees, and coupon discounts. Used in gateways.
 	 *
 	 * @param  string $context View or edit context.
 	 * @return float
@@ -458,7 +479,9 @@ abstract class WC_Abstract_Order extends WC_Abstract_Legacy_Order {
 	}
 
 	/**
-	 * Gets order subtotal.
+	 * Gets order subtotal. Order subtotal is the price of all items excluding taxes, fees, shipping cost, and coupon discounts.
+	 * If sale price is set on an item, the subtotal will include this sale discount. E.g. a product with a regular
+	 * price of $100 bought at a 50% discount will represent $50 of the subtotal for the order.
 	 *
 	 * @return float
 	 */
@@ -1210,6 +1233,16 @@ abstract class WC_Abstract_Order extends WC_Abstract_Legacy_Order {
 				);
 			}
 		}
+
+		/**
+		 * Action to signal that a coupon has been applied to an order.
+		 *
+		 * @param  WC_Coupon $coupon The applied coupon object.
+		 * @param  WC_Order  $order  The current order object.
+		 *
+		 * @since 7.3
+		 */
+		do_action( 'woocommerce_order_applied_coupon', $coupon, $this );
 
 		$this->set_coupon_discount_amounts( $discounts );
 		$this->save();

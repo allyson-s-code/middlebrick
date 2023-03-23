@@ -2,9 +2,9 @@
 Contributors: WP-LiveChat, wordpress3cx, wp3cx
 Tags: chat plugin, live chat, free live chat, live help, live support, wordpress live chat
 Requires at least: 5.3
-Tested up to: 6.0
+Tested up to: 6.1
 Requires PHP: 5.4
-Stable tag: 10.0.5
+Stable tag: 10.0.8
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: wp-live-chat-support
@@ -66,7 +66,7 @@ Get 3CX
 
 = How do I get 3CX StartUP Free? =
 3CX StartUP is an easy to setup and manage communications platform that handles live chat as well as calls, video conferencing and team communications. Ideal for small to medium sized businesses. It is available in the cloud and offered for free.
-1. Sign up for a 3CX account [here](https://www.3cx.com/startup/)
+1. Sign up for a 3CX account [here](https://www.3cx.com/startup?src=livechatwp)
 2. Install the WordPress Plugin on your website
 3. With the credentials you receive login to the Web Client 
 4. Go to Office Settings > Voice & Chat > Add Live Chat
@@ -91,6 +91,18 @@ Huge update with over 300 changes that include: Bugfixes, Vulnerability Fixes & 
 
 == Changelog ==
 
+= 10.0.8 - 2023-03-10 =
+* Added reset configuration
+* UI improvements
+
+= 10.0.7 - 2023-03-08 =
+* Added parameters to 3CX StartUP signup URL for easier activation
+* Added StartUP callback for auto configuration
+
+= 10.0.6 - 2023-01-03 =
+* 3CX StartUP sign up form
+* Show settings page when plugin is activated and not yet configured
+
 = 10.0.5 - 2022-09-19 =
 * LiveChat UI updated
 * Multiple issues fixed
@@ -104,13 +116,13 @@ Huge update with over 300 changes that include: Bugfixes, Vulnerability Fixes & 
 
 = 10.0.2 - 2022-05-30 =
 * Updated translations
-* Added link to 3CX Start Up
+* Added link to 3CX StartUP
 
 = 10.0.1 - 2022-05-18 =
 * Fixed Optional Caption Issue
 
 = 10.0.0 - 2022-05-16 =
-* New release with 3CX Start Up support
+* New release with 3CX StartUP support
 
 = 9.4.3 - 2022-04-28 =
 * Fixed security issue - Thanks to Moucadel Matthieu

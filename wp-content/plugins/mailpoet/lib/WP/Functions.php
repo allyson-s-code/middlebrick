@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore SlevomatCodingStandard.TypeHints.DeclareStrictTypes.DeclareStrictTypesMissing
 
 namespace MailPoet\WP;
 
@@ -121,6 +121,10 @@ class Functions {
 
   public function deleteCommentMeta($commentId, $metaKey, $metaValue = '') {
     return delete_comment_meta($commentId, $metaKey, $metaValue);
+  }
+
+  public function addOption($option, $value) {
+    return add_option($option, $value);
   }
 
   public function deleteOption($option) {
@@ -398,7 +402,7 @@ class Functions {
 
     /**
    * @param string $tag
-   * @param callable $functionToRemove
+   * @param callable|string|array $functionToRemove
    * @param int $priority
    */
   public function removeAction($tag, $functionToRemove, $priority = 10) {
@@ -861,5 +865,9 @@ class Functions {
 
   public function wpIsSiteUrlUsingHttps(): bool {
     return wp_is_site_url_using_https();
+  }
+
+  public function getPostMeta(int $postId, string $key, bool $single = false) {
+    return get_post_meta($postId, $key, $single);
   }
 }

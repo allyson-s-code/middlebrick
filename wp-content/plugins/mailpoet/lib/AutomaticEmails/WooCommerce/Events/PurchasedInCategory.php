@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore SlevomatCodingStandard.TypeHints.DeclareStrictTypes.DeclareStrictTypesMissing
 
 namespace MailPoet\AutomaticEmails\WooCommerce\Events;
 
@@ -40,7 +40,7 @@ class PurchasedInCategory {
     WCHelper $woocommerceHelper = null
   ) {
     if ($woocommerceHelper === null) {
-      $woocommerceHelper = new WCHelper();
+      $woocommerceHelper = ContainerWrapper::getInstance()->get(WCHelper::class);
     }
     $this->woocommerceHelper = $woocommerceHelper;
     $this->scheduler = ContainerWrapper::getInstance()->get(AutomaticEmailScheduler::class);

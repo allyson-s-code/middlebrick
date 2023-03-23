@@ -116,4 +116,50 @@ class wplc_Plugin_Public
     if (FALSE === strpos($url, 'callus.js')) return $url;
     return str_replace(' src', ' defer src', $url);
   }
+
+  /**
+   * register REST endpoint for auto configuration
+   *
+   * @since    10.0.7
+   */
+  public function register_autoconfig_request()
+  {
+    register_rest_route('wp-live-chat-support/v1', '/autoconfigure', array(
+      'methods' => 'POST',
+      'callback' => [ $this, 'autoconfigure' ],
+      'show_in_index' => false,
+      'permission_callback' => '__return_true'
+    ));
+  }  
+
+  /**
+   * handle REST request auto configuration
+   *
+   * @since    10.0.7
+   */
+  public function autoconfigure($data) {
+    $results='';
+    $nonce=$data->get_param('nonce');
+    $chaturl=$data->get_param('chaturl');
+    
+    $stored_nonce=get_option('wplc_callback_nonce');
+    if (empty($stored_nonce)) {
+      return new WP_Error( 'already_activated', 'This WordPress instance has already an active 3CX instance', array( 'status' => 400 ) );
+    }    
+    if (empty($nonce)) {
+      return new WP_Error( 'invalid_nonce', 'Empty nonce', array( 'status' => 400 ) );
+    }    
+    if ($nonce!=$stored_nonce) {
+      return new WP_Error( 'invalid_nonce', 'Nonce does not match', array( 'status' => 400 ) );
+    }    
+    if (empty($chaturl) || !wplc_Admin_Settings::sanitize_callus_url($chaturl)){
+      return new WP_Error( 'invalid_chaturl', 'Chaturl is invalid', array( 'status' => 400 ) );
+    }    
+    $options=$this->plugin_settings->read_config();
+    $options['callus_url']=$chaturl;
+    update_option('wplc_display_options', $options);
+    update_option('wplc_activated', 2);
+    update_option('wplc_callback_nonce', '');
+    return new WP_REST_Response();
+  }
 }

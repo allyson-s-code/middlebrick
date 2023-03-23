@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore SlevomatCodingStandard.TypeHints.DeclareStrictTypes.DeclareStrictTypesMissing
 
 namespace MailPoet\Router\Endpoints;
 
@@ -119,9 +119,6 @@ class Subscription {
   }
 
   private function applyOneClickUnsubscribeStrategy($data): void {
-    if (!$this->wp->wpIsSiteUrlUsingHttps()) {
-      return;
-    }
     $subscription = $this->initSubscriptionPage(UserSubscription\Pages::ACTION_UNSUBSCRIBE, $data);
     $subscription->unsubscribe(StatisticsUnsubscribeEntity::METHOD_ONE_CLICK);
   }

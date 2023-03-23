@@ -47,10 +47,43 @@ body .is-layout-constrained > * + * {
 }
 
 /* ---------- General ----------- */
+.site-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  font-weight: 900;
+  letter-spacing: 0.1rem;
+}
 
 /* --------- Header ------- */
+/* ---------Mobile Header -------- */
 
-/* -------- Front Page --------- */
+#ast-hf-mobile-menu {
+  width: 100%;
+  height: 100vh;
+  background-color: #f8f7f3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: center;
+  padding-top: 20px;
+}
+
+#ast-mobile-header .ast-primary-header-bar {
+  background-color: #f8f7f3;
+}
+
+#ast-hf-mobile-menu a.menu-link {
+  font-size: 2rem;
+  color: navy;
+  padding-top: 20px;
+}
+
+/* -------- Home Page --------- */
 
 .hero-content {
   width: 100%;
@@ -60,10 +93,11 @@ body .is-layout-constrained > * + * {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 }
 
+/* to make background color on home page different from woocommerce/general */
 .page-id-2 .site-primary-header-wrap,
 .page-id-2 .main-content {
   background: #f8f7f3;
@@ -227,29 +261,51 @@ footer {
   background-color: black;
 }
 
+footer p {
+  font-size: 0.75rem;
+}
+
 .site-primary-footer-wrap {
   border: none;
   border-top-width: 0;
   border-top-color: black;
+  padding: 20px 0;
+}
+
+#astra-footer-menu a.menu-link {
+  margin-top: 20px;
 }
 
 /* -------- SHOP--------- */
 /* General */
 .woo-commerce .site-header .main-header-bar {
-  background: #ffffff;
+  background-color: #ffffff;
 }
 
 .woo-commerce .site-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: #ffffff;
+  background-color: #ffffff;
 }
 
 .ast-woocommerce-container {
   width: 90%;
   max-width: 900px;
+}
+
+.page-title {
+  font-weight: 700;
+}
+
+.product_title {
+  text-align: left;
+}
+
+/* -------- SHOP ITEM--------- */
+.single-product-category {
+  display: none;
+}
+
+form.cart {
+  padding: 24px 0;
 }
 
 /* ------ Tablet ------ */
@@ -279,6 +335,11 @@ footer {
     width: 85%;
     padding: 75px 0 100px 0;
   }
+}
+
+/* ------ Footer ------ */
+footer a.menu-link {
+  margin-top: 0;
 }
 
 @media screen and (min-width: 768px) {

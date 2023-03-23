@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore SlevomatCodingStandard.TypeHints.DeclareStrictTypes.DeclareStrictTypesMissing
 
 namespace MailPoet\Config;
 
@@ -23,6 +23,7 @@ use MailPoet\Statistics\Track\SubscriberActivityTracker;
 use MailPoet\Util\ConflictResolver;
 use MailPoet\Util\Helpers;
 use MailPoet\Util\Notices\PermanentNotices;
+use MailPoet\Util\Url;
 use MailPoet\WooCommerce\Helper as WooCommerceHelper;
 use MailPoet\WooCommerce\TransactionalEmailHooks as WCTransactionalEmails;
 use MailPoet\WP\Functions as WPFunctions;
@@ -116,7 +117,12 @@ class Initializer {
   /** @var DaemonActionSchedulerRunner */
   private $actionSchedulerRunner;
 
+  /** @var Url */
+  private $urlHelper;
+
   const INITIALIZED = 'MAILPOET_INITIALIZED';
+
+  const PLUGIN_ACTIVATED = 'mailpoet_plugin_activated';
 
   public function __construct(
     RendererFactory $rendererFactory,
@@ -146,7 +152,8 @@ class Initializer {
     Engine $automationEngine,
     MailPoetIntegration $automationMailPoetIntegration,
     PersonalDataExporters $personalDataExporters,
-    DaemonActionSchedulerRunner $actionSchedulerRunner
+    DaemonActionSchedulerRunner $actionSchedulerRunner,
+    Url $urlHelper
   ) {
     $this->rendererFactory = $rendererFactory;
     $this->accessControl = $accessControl;
@@ -176,6 +183,7 @@ class Initializer {
     $this->automationMailPoetIntegration = $automationMailPoetIntegration;
     $this->personalDataExporters = $personalDataExporters;
     $this->actionSchedulerRunner = $actionSchedulerRunner;
+    $this->urlHelper = $urlHelper;
   }
 
   public function init() {
@@ -256,11 +264,17 @@ class Initializer {
       'register',
     ]);
 
+    WPFunctions::get()->addAction('admin_init', [
+      $this,
+      'afterPluginActivation',
+    ]);
+
     $this->hooks->initEarlyHooks();
   }
 
   public function runActivator() {
     try {
+      $this->wpFunctions->addOption(self::PLUGIN_ACTIVATED, true); // used in afterPluginActivation
       $this->activator->activate();
     } catch (InvalidStateException $e) {
       return $this->handleRunningMigration($e);
@@ -308,6 +322,7 @@ class Initializer {
       $this->setupPermanentNotices();
       $this->setupAutomaticEmails();
       $this->setupWoocommerceBlocksIntegration();
+      $this->setupDeactivationPoll();
       $this->subscriberActivityTracker->trackActivity();
       $this->postEditorBlock->init();
       $this->automationEngine->initialize();
@@ -320,6 +335,28 @@ class Initializer {
     }
 
     define(self::INITIALIZED, true);
+  }
+
+  /**
+   * Walk around for getting this to work correctly
+   *
+   * Read more here: https://developer.wordpress.org/reference/functions/register_activation_hook/
+   * and https://github.com/mailpoet/mailpoet/pull/4620#discussion_r1058210174
+   * @return void
+   */
+  public function afterPluginActivation() {
+    if (!$this->wpFunctions->isAdmin() || !defined(self::INITIALIZED) || !$this->wpFunctions->getOption(self::PLUGIN_ACTIVATED)) return;
+
+    $currentUrl = $this->urlHelper->getCurrentUrl();
+
+    // wp automatically redirect to `wp-admin/plugins.php?activate=true&...` after plugin activation
+    $activatedByWpAdmin = !empty(strpos($currentUrl, 'plugins.php')) && isset($_GET['activate']) && (bool)$_GET['activate'];
+    if (!$activatedByWpAdmin) return; // not activated by wp. Do not redirect e.g WooCommerce NUX
+
+    $this->changelog->redirectToLandingPage();
+
+    // done with afterPluginActivation actions
+    $this->wpFunctions->deleteOption(self::PLUGIN_ACTIVATED);
   }
 
   public function maybeDbUpdate() {
@@ -476,5 +513,10 @@ class Initializer {
     if ($wcEnabled && $wcBlocksEnabled) {
       $this->woocommerceBlocksIntegration->init();
     }
+  }
+
+  private function setupDeactivationPoll(): void {
+    $deactivationPoll = new DeactivationPoll($this->wpFunctions, $this->renderer);
+    $deactivationPoll->init();
   }
 }

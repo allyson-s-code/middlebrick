@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore SlevomatCodingStandard.TypeHints.DeclareStrictTypes.DeclareStrictTypesMissing
 
 namespace MailPoet\Newsletter;
 
@@ -77,6 +77,9 @@ class NewsletterSaveController {
   /** @var Scheduler */
   private $scheduler;
 
+  /*** @var NewsletterCoupon */
+  private $newsletterCoupon;
+  
   public function __construct(
     AuthorizedEmailsController $authorizedEmailsController,
     Emoji $emoji,
@@ -92,7 +95,8 @@ class NewsletterSaveController {
     Security $security,
     WPFunctions $wp,
     ApiDataSanitizer $dataSanitizer,
-    Scheduler $scheduler
+    Scheduler $scheduler,
+    NewsletterCoupon $newsletterCoupon
   ) {
     $this->authorizedEmailsController = $authorizedEmailsController;
     $this->emoji = $emoji;
@@ -109,6 +113,7 @@ class NewsletterSaveController {
     $this->wp = $wp;
     $this->dataSanitizer = $dataSanitizer;
     $this->scheduler = $scheduler;
+    $this->newsletterCoupon = $newsletterCoupon;
   }
 
   public function save(array $data = []): NewsletterEntity {
@@ -185,6 +190,10 @@ class NewsletterSaveController {
     // reset sent at date
     $duplicate->setSentAt(null);
 
+    $body = $duplicate->getBody();
+    if ($body) {
+      $duplicate->setBody($this->newsletterCoupon->cleanupBodySensitiveData($body));
+    }
     $this->newslettersRepository->persist($duplicate);
     $this->newslettersRepository->flush();
 
@@ -292,6 +301,10 @@ class NewsletterSaveController {
 
     if (array_key_exists('reply_to_address', $data)) {
       $newsletter->setReplyToAddress($data['reply_to_address'] ?? '');
+    }
+
+    if ($newsletter->getStatus() === NewsletterEntity::STATUS_CORRUPT) {
+      $newsletter->setStatus(NewsletterEntity::STATUS_SENDING);
     }
   }
 

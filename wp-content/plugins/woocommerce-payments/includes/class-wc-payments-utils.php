@@ -224,17 +224,29 @@ class WC_Payments_Utils {
 			'BE' => __( 'Belgium', 'woocommerce-payments' ),
 			'CA' => __( 'Canada', 'woocommerce-payments' ),
 			'CH' => __( 'Switzerland', 'woocommerce-payments' ),
+			'CY' => __( 'Cyprus', 'woocommerce-payments' ),
 			'DE' => __( 'Germany', 'woocommerce-payments' ),
+			'DK' => __( 'Denmark', 'woocommerce-payments' ),
+			'EE' => __( 'Estonia', 'woocommerce-payments' ),
+			'FI' => __( 'Finland', 'woocommerce-payments' ),
 			'ES' => __( 'Spain', 'woocommerce-payments' ),
 			'FR' => __( 'France', 'woocommerce-payments' ),
+			'LU' => __( 'Luxembourg', 'woocommerce-payments' ),
 			'GB' => __( 'United Kingdom (UK)', 'woocommerce-payments' ),
+			'GR' => __( 'Greece', 'woocommerce-payments' ),
 			'HK' => __( 'Hong Kong', 'woocommerce-payments' ),
 			'IE' => __( 'Ireland', 'woocommerce-payments' ),
 			'IT' => __( 'Italy', 'woocommerce-payments' ),
+			'LT' => __( 'Lithuania', 'woocommerce-payments' ),
+			'LV' => __( 'Latvia', 'woocommerce-payments' ),
+			'MT' => __( 'Malta', 'woocommerce-payments' ),
 			'NL' => __( 'Netherlands', 'woocommerce-payments' ),
+			'NO' => __( 'Norway', 'woocommerce-payments' ),
 			'NZ' => __( 'New Zealand', 'woocommerce-payments' ),
 			'PL' => __( 'Poland', 'woocommerce-payments' ),
 			'PT' => __( 'Portugal', 'woocommerce-payments' ),
+			'SI' => __( 'Slovenia', 'woocommerce-payments' ),
+			'SK' => __( 'Slovakia', 'woocommerce-payments' ),
 			'SG' => __( 'Singapore', 'woocommerce-payments' ),
 			'US' => __( 'United States (US)', 'woocommerce-payments' ),
 		];
@@ -825,5 +837,14 @@ class WC_Payments_Utils {
 			);
 		}
 		return $client_secret;
+	}
+
+	/**
+	 * Checks if the HPOS order tables are being used.
+	 *
+	 * @return bool True if HPOS tables are enabled and being used.
+	 */
+	public static function is_hpos_tables_usage_enabled() {
+		return class_exists( '\Automattic\WooCommerce\Utilities\OrderUtil' ) && \Automattic\WooCommerce\Utilities\OrderUtil::custom_orders_table_usage_is_enabled();
 	}
 }

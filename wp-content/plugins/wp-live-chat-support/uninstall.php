@@ -17,3 +17,5 @@ if (!current_user_can('activate_plugins')) {
   return;
 }
 delete_option('wplc_display_options');
+delete_option('wplc_callback_nonce');
+delete_option('wplc_activated');

@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore SlevomatCodingStandard.TypeHints.DeclareStrictTypes.DeclareStrictTypesMissing
 
 namespace MailPoet\Newsletter\Renderer;
 
@@ -8,7 +8,11 @@ if (!defined('ABSPATH')) exit;
 use MailPoet\Config\Env;
 use MailPoet\Config\ServicesChecker;
 use MailPoet\Entities\NewsletterEntity;
+use MailPoet\Logging\LoggerFactory;
+use MailPoet\Newsletter\NewslettersRepository;
 use MailPoet\Newsletter\Renderer\EscapeHelper as EHelper;
+use MailPoet\Newsletter\Sending\SendingQueuesRepository;
+use MailPoet\NewsletterProcessingException;
 use MailPoet\Tasks\Sending as SendingTask;
 use MailPoet\Util\pQuery\DomNode;
 use MailPoet\WP\Functions as WPFunctions;
@@ -32,18 +36,38 @@ class Renderer {
   /** @var ServicesChecker */
   private $servicesChecker;
 
+  /** @var WPFunctions */
+  private $wp;
+
+  /*** @var LoggerFactory */
+  private $loggerFactory;
+
+  /*** @var NewslettersRepository */
+  private $newslettersRepository;
+
+  /*** @var SendingQueuesRepository */
+  private $sendingQueuesRepository;
+
   public function __construct(
     Blocks\Renderer $blocksRenderer,
     Columns\Renderer $columnsRenderer,
     Preprocessor $preprocessor,
     \MailPoetVendor\CSS $cSSInliner,
-    ServicesChecker $servicesChecker
+    ServicesChecker $servicesChecker,
+    WPFunctions $wp,
+    LoggerFactory $loggerFactory,
+    NewslettersRepository $newslettersRepository,
+    SendingQueuesRepository $sendingQueuesRepository
   ) {
     $this->blocksRenderer = $blocksRenderer;
     $this->columnsRenderer = $columnsRenderer;
     $this->preprocessor = $preprocessor;
     $this->cSSInliner = $cSSInliner;
     $this->servicesChecker = $servicesChecker;
+    $this->wp = $wp;
+    $this->loggerFactory = $loggerFactory;
+    $this->newslettersRepository = $newslettersRepository;
+    $this->sendingQueuesRepository = $sendingQueuesRepository;
   }
 
   public function render(NewsletterEntity $newsletter, SendingTask $sendingTask = null, $type = false) {
@@ -71,15 +95,29 @@ class Renderer {
       $content = $this->addMailpoetLogoContentBlock($content, $styles);
     }
 
+    $language = $this->wp->getBloginfo('language');
     $metaRobots = $preview ? '<meta name="robots" content="noindex, nofollow" />' : '';
-    $content = $this->preprocessor->process($newsletter, $content, $preview, $sendingTask);
-    $renderedBody = $this->renderBody($newsletter, $content);
+    $renderedBody = "";
+    try {
+      $content = $this->preprocessor->process($newsletter, $content, $preview, $sendingTask);
+      $renderedBody = $this->renderBody($newsletter, $content);
+    } catch (NewsletterProcessingException $e) {
+      $this->loggerFactory->getLogger(LoggerFactory::TOPIC_COUPONS)->error(
+        $e->getMessage(),
+        ['newsletter_id' => $newsletter->getId()]
+      );
+      $this->newslettersRepository->setAsCorrupt($newsletter);
+      if ($newsletter->getLatestQueue()) {
+        $this->sendingQueuesRepository->pause($newsletter->getLatestQueue());
+      }
+    }
     $renderedStyles = $this->renderStyles($styles);
     $customFontsLinks = StylesHelper::getCustomFontsLinks($styles);
 
     $template = $this->injectContentIntoTemplate(
       (string)file_get_contents(dirname(__FILE__) . '/' . self::NEWSLETTER_TEMPLATE),
       [
+        $language,
         $metaRobots,
         htmlspecialchars($subject ?: $newsletter->getSubject()),
         $renderedStyles,
@@ -197,7 +235,7 @@ class Renderer {
     // because tburry/pquery contains a bug and replaces the opening non mso condition incorrectly we have to replace the opening tag with correct value
     $template = $templateDom->__toString();
     $template = str_replace('<!--[if !mso]><![endif]-->', '<!--[if !mso]><!-- -->', $template);
-    $template = WPFunctions::get()->applyFilters(
+    $template = $this->wp->applyFilters(
       self::FILTER_POST_PROCESS,
       $template
     );
