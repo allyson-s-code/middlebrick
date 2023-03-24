@@ -56,7 +56,7 @@ body .is-layout-constrained > * + * {
 
 a {
   font-weight: 900;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.15rem;
 }
 
 /* --------- Header ------- */
@@ -64,23 +64,23 @@ a {
 
 #ast-hf-mobile-menu {
   width: 100%;
-  height: 100vh;
   background-color: #f8f7f3;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   text-align: center;
-  padding-top: 20px;
+  padding-top: 40px;
 }
 
-#ast-mobile-header .ast-primary-header-bar {
+/*#ast-mobile-header .ast-primary-header-bar {
   background-color: #f8f7f3;
-}
+}*/
 
 #ast-hf-mobile-menu a.menu-link {
   font-size: 2rem;
   color: navy;
-  padding-top: 20px;
+  padding: 40px 20px 0 20px;
+  line-height: normal;
 }
 
 /* -------- Home Page --------- */
@@ -95,6 +95,7 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 40px;
 }
 
 /* to make background color on home page different from woocommerce/general */
@@ -291,8 +292,19 @@ footer p {
   max-width: 900px;
 }
 
+.woocommerce-breadcrumb,
+.woocommerce-notices-wrapper,
+.woocommerce-result-count,
+.woocommerce-ordering {
+  display: none;
+}
+
 .page-title {
   font-weight: 700;
+}
+
+.products {
+  margin-top: 40px;
 }
 
 .product_title {
@@ -307,6 +319,15 @@ footer p {
 form.cart {
   padding: 24px 0;
 }
+
+/* -------- CART --------- */
+/* This is not working- trying to remove border between x and thumbnail image- desktop looks good but mobile looks busy and I don't like placement of x
+
+
+.product-remove {
+  border-bottom: none;
+}
+*/
 
 /* ------ Tablet ------ */
 @media screen and (min-width: 550px) {
