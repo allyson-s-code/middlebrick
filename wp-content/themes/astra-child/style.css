@@ -72,10 +72,6 @@ a {
   padding-top: 40px;
 }
 
-/*#ast-mobile-header .ast-primary-header-bar {
-  background-color: #f8f7f3;
-}*/
-
 #ast-hf-mobile-menu a.menu-link {
   font-size: 2rem;
   color: navy;
@@ -299,16 +295,9 @@ footer p {
   display: none;
 }
 
-.page-title {
+.page-title,
+.entry-title {
   font-weight: 700;
-}
-
-.products {
-  margin-top: 40px;
-}
-
-.product_title {
-  text-align: left;
 }
 
 /* -------- SHOP ITEM--------- */
@@ -321,13 +310,17 @@ form.cart {
 }
 
 /* -------- CART --------- */
-/* This is not working- trying to remove border between x and thumbnail image- desktop looks good but mobile looks busy and I don't like placement of x
-
-
-.product-remove {
-  border-bottom: none;
+.wc-block-cart {
+  padding: 0 12px;
 }
-*/
+
+.wc-block-cart__submit-button {
+  border-radius: 30px;
+}
+
+.wp-block-woocommerce-cart-order-summary-block {
+  margin-bottom: 20px;
+}
 
 /* ------ Tablet ------ */
 @media screen and (min-width: 550px) {
@@ -361,6 +354,11 @@ form.cart {
 /* ------ Footer ------ */
 footer a.menu-link {
   margin-top: 0;
+}
+
+/* ------ Shop Cart ------ */
+.wc-block-cart {
+  padding: 0;
 }
 
 @media screen and (min-width: 768px) {
