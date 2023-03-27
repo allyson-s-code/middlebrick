@@ -27,6 +27,7 @@ h2 {
   font-size: 2em;
   font-weight: 700;
   line-height: 1.5;
+  letter-spacing: 0.1rem;
 }
 
 /* gets rid of gap between blocks */
@@ -156,15 +157,22 @@ h1 {
   max-width: 400px;
   height: auto;
   object-fit: cover;
+  transition-duration: 15s;
+  transition-property: transform;
+}
+
+.shop-entrance img:hover {
   /* animation : */
-  animation-name: rotate;
+  /*animation-name: rotate;
   -webkit-animation-name: rotate;
   animation-duration: 30s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+  */
+  transform: rotate(360deg);
 }
 
-@keyframes rotate {
+/*@keyframes rotate {
   from {
     transform: rotate(0deg);
   }
@@ -172,6 +180,7 @@ h1 {
     transform: rotate(360deg);
   }
 }
+*/
 
 /* Featured Work */
 
@@ -196,6 +205,10 @@ h2 {
 .shop-link-heading {
   background-color: #dbc6e7;
   text-align: right;
+}
+
+.shop-link-h2 a:hover {
+  color: white;
 }
 
 /* ------ About ------ */
@@ -291,7 +304,8 @@ footer p {
 .woocommerce-breadcrumb,
 .woocommerce-notices-wrapper,
 .woocommerce-result-count,
-.woocommerce-ordering {
+.woocommerce-ordering,
+.woocommerce .products .star-rating {
   display: none;
 }
 
@@ -300,8 +314,31 @@ footer p {
   font-weight: 700;
 }
 
+.woocommerce a.button,
+.woocommerce button.button.alt,
+.wc-block-components-button {
+  background: linear-gradient(135deg, #5b8dcb 0%, rgb(65, 88, 208) 100%);
+  color: white;
+}
+
+.woocommerce a.button:hover,
+.woocommerce button.button.alt:hover,
+.wc-block-components-button:hover {
+  background: linear-gradient(135deg, #5b8dcb 0%, rgb(65, 88, 208) 100%);
+  color: white;
+  opacity: 0.75;
+}
+
+.products {
+  padding-top: 40px;
+}
+
+.product_title {
+  text-align: left;
+}
+
 /* -------- SHOP ITEM--------- */
-.single-product-category {
+.single-product-category a {
   display: none;
 }
 
@@ -310,8 +347,8 @@ form.cart {
 }
 
 /* -------- CART --------- */
-.wc-block-cart {
-  padding: 0 12px;
+.wp-block-woocommerce-cart {
+  padding: 0 15px;
 }
 
 .wc-block-cart__submit-button {
@@ -326,6 +363,11 @@ form.cart {
 @media screen and (min-width: 550px) {
   h1 {
     font-size: 2.5rem;
+  }
+
+  #primary {
+    padding: 0;
+    margin: 0;
   }
 
   .hero-image,
@@ -349,21 +391,45 @@ form.cart {
     width: 85%;
     padding: 75px 0 100px 0;
   }
-}
 
-/* ------ Footer ------ */
-footer a.menu-link {
-  margin-top: 0;
-}
+  /* ------ Footer ------ */
+  footer a.menu-link {
+    margin-top: 0;
+  }
 
-/* ------ Shop Cart ------ */
-.wc-block-cart {
-  padding: 0;
+  /* ------ Shop Cart ------ */
+  .wp-block-woocommerce-cart {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 @media screen and (min-width: 768px) {
+  header a.menu-link {
+    font-weight: 400;
+  }
+
+  /* to remove default grow effect on nav menu link hover*/
+  .ast-desktop .ast-menu-hover-style-zoom > .menu-item > .menu-link:hover {
+    transform: none;
+  }
+
+  /* to remove default dotted border after clicking*/
+  .ast-theme-transparent-header .main-header-menu .menu-link {
+    outline: none;
+  }
+
+  a.menu-link:hover {
+    color: rgb(155, 81, 224);
+  }
+
   .shop-entrance {
     background-size: 65px;
+  }
+
+  /* ---- SHOP ---- */
+  .ast-woocommerce-container {
+    margin-top: 40px;
   }
 }
 
