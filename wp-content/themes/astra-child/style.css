@@ -30,6 +30,17 @@ h2 {
   letter-spacing: 0.1rem;
 }
 
+h1 {
+  width: 95%;
+  font-size: 4rem;
+  line-height: 1;
+  /*word-break: break-all;*/
+}
+
+header .main-header-menu {
+  font-family: "bc-alphapipe", sans-serif;
+}
+
 /* gets rid of gap between blocks */
 body {
   --wp--style--block-gap: 0;
@@ -74,16 +85,33 @@ a {
 }
 
 #ast-hf-mobile-menu a.menu-link {
-  font-size: 2rem;
-  color: navy;
+  font-size: 3rem;
   padding: 40px 20px 0 20px;
   line-height: normal;
+  color: #95bbe7;
+  color: coral;
+}
+
+#ast-hf-mobile-menu .menu-item:first-child {
+  color: #eec641;
+}
+
+#ast-hf-mobile-menu .menu-item:last-child {
+  color: #ffa280;
 }
 
 /* -------- Home Page --------- */
 
 .hero-content {
   width: 100%;
+}
+
+.hero-title {
+  color: #3a3a3a;
+  -webkit-text-stroke: 1px black;
+  -webkit-text-fill-color: #dde8cf;
+  text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
+    -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .main-content {
@@ -128,7 +156,7 @@ h1 {
 }
 
 .hero-images {
-  background-color: #5b8dcb;
+  background-color: #3a3a3a;
 }
 
 .hero-image,
@@ -329,6 +357,15 @@ footer p {
   opacity: 0.75;
 }
 
+.woocommerce-products-header__title {
+  font-size: 5rem;
+  color: #3a3a3a;
+  -webkit-text-stroke: 1px black;
+  -webkit-text-fill-color: #95bbe7;
+  text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
+    -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
 .products {
   padding-top: 40px;
 }
@@ -362,7 +399,7 @@ form.cart {
 /* ------ Tablet ------ */
 @media screen and (min-width: 550px) {
   h1 {
-    font-size: 2.5rem;
+    word-break: normal;
   }
 
   #primary {
@@ -423,6 +460,10 @@ form.cart {
     color: rgb(155, 81, 224);
   }
 
+  h1 {
+    word-break: normal;
+  }
+
   .shop-entrance {
     background-size: 65px;
   }
@@ -435,10 +476,6 @@ form.cart {
 
 /* ------ Desktop ------ */
 @media screen and (min-width: 1024px) {
-  h1 {
-    font-size: 3rem;
-  }
-
   h2 {
     font-size: 2.5rem;
   }
