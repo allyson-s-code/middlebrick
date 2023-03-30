@@ -14,33 +14,72 @@ Text Domain:  astra-child
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap");
 
 /*--- General Styles ----*/
+
+/*
+=============== 
+Variables
+===============
+*/
+
+:root {
+  --bg-home-cream: #f8f7f3;
+  --heading-home-color: #dde8cf;
+  --shop-blue: #bed2e9;
+  --accent-coral: #fdc0aa;
+}
+
 /* fonts */
+html {
+  font-size: 16px;
+}
 
 body {
   font-family: "poppins", sans-serif;
-  font-size: 1em;
 }
 
 h1,
 h2 {
   font-family: "bc-alphapipe", sans-serif;
-  font-size: 2em;
+  font-size: 3em;
   font-weight: 700;
-  line-height: 1.5;
+  line-height: 1;
   letter-spacing: 0.1rem;
 }
 
 h1 {
   width: 95%;
-  font-size: 4rem;
+  font-size: 3.15rem;
   line-height: 1;
   /*word-break: break-all;*/
 }
 
-header .main-header-menu {
+h3 {
+  font-family: "bc-alphapipe", sans-serif;
+  font-size: 2.5em;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.1rem;
+}
+
+.main-header-menu,
+.ast-nav-menu {
   font-family: "bc-alphapipe", sans-serif;
 }
 
+.ast-nav-menu li a .menu-link:hover {
+  color: var(--shop-blue);
+}
+
+/*.ast-nav-menu .menu-item:first-child:hover {
+  color: var(--heading-home-color);
+}
+
+.ast-nav-menu .menu-item:last-child:hover {
+  color: var(--accent-coral);
+}
+*/
+
+/* ---------- General ----------- */
 /* gets rid of gap between blocks */
 body {
   --wp--style--block-gap: 0;
@@ -58,7 +97,6 @@ body .is-layout-constrained > * + * {
   max-width: none;
 }
 
-/* ---------- General ----------- */
 .site-main {
   display: flex;
   flex-direction: column;
@@ -67,16 +105,19 @@ body .is-layout-constrained > * + * {
 }
 
 a {
-  font-weight: 900;
   letter-spacing: 0.15rem;
 }
 
 /* --------- Header ------- */
+.main-header-bar {
+  border-bottom: none;
+}
+
 /* ---------Mobile Header -------- */
 
 #ast-hf-mobile-menu {
   width: 100%;
-  background-color: #f8f7f3;
+  background-color: var(--bg-home-cream);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -86,18 +127,9 @@ a {
 
 #ast-hf-mobile-menu a.menu-link {
   font-size: 3rem;
+  font-weight: 400;
   padding: 40px 20px 0 20px;
   line-height: normal;
-  color: #95bbe7;
-  color: coral;
-}
-
-#ast-hf-mobile-menu .menu-item:first-child {
-  color: #eec641;
-}
-
-#ast-hf-mobile-menu .menu-item:last-child {
-  color: #ffa280;
 }
 
 /* -------- Home Page --------- */
@@ -109,9 +141,22 @@ a {
 .hero-title {
   color: #3a3a3a;
   -webkit-text-stroke: 1px black;
-  -webkit-text-fill-color: #dde8cf;
+  -webkit-text-fill-color: var(--heading-home-color);
   text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
     -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.home-page h2,
+.shop-link-h2 a {
+  line-height: 1.1;
+  color: #3a3a3a;
+  -webkit-text-fill-color: var(--bg-home-cream);
+  text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
+    -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.shop-link-h2 a:hover {
+  color: white;
 }
 
 .main-content {
@@ -126,7 +171,7 @@ a {
 /* to make background color on home page different from woocommerce/general */
 .page-id-2 .site-primary-header-wrap,
 .page-id-2 .main-content {
-  background: #f8f7f3;
+  background: var(--bg-home-cream);
 }
 
 .hero-images,
@@ -173,11 +218,11 @@ h1 {
   align-items: center;
   padding: 75px 0;
   margin: 0;
-  background-image: url(./assets/img/Middlebrick-logo.png);
+  /*background-image: url(./assets/img/Middlebrick-logo.png);
   background-repeat: no-repeat;
   background-size: 75px;
   background-position-x: 50%;
-  background-position-y: 50%;
+  background-position-y: 50%;*/
 }
 
 .shop-entrance img {
@@ -220,23 +265,19 @@ h2 {
 .shop-link-heading,
 .random-builds-heading {
   width: 100%;
-  height: 75px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px 0;
 }
 
 .recent-builds-heading {
-  background-color: #edd59b;
+  background-color: var(--heading-home-color);
 }
 
 .shop-link-heading {
-  background-color: #dbc6e7;
+  background-color: var(--shop-blue);
   text-align: right;
-}
-
-.shop-link-h2 a:hover {
-  color: white;
 }
 
 /* ------ About ------ */
@@ -263,16 +304,16 @@ h2 {
 
 /* ------ Random Builds ------ */
 .random-builds-heading {
-  background-color: #ffa280;
+  background-color: var(--accent-coral);
   text-align: left;
 }
 
 #sb_instagram {
-  background-color: #ffa280;
+  background-color: var(--accent-coral);
 }
 
 .sb_instagram_header {
-  background-color: #ffa280;
+  background-color: var(--accent-coral);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -340,6 +381,7 @@ footer p {
 .page-title,
 .entry-title {
   font-weight: 700;
+  font-size: 4rem;
 }
 
 .woocommerce a.button,
@@ -347,6 +389,8 @@ footer p {
 .wc-block-components-button {
   background: linear-gradient(135deg, #5b8dcb 0%, rgb(65, 88, 208) 100%);
   color: white;
+  border: 1px solid black;
+  box-shadow: 2px 3px 0 black;
 }
 
 .woocommerce a.button:hover,
@@ -358,10 +402,10 @@ footer p {
 }
 
 .woocommerce-products-header__title {
-  font-size: 5rem;
+  font-size: 4rem;
   color: #3a3a3a;
   -webkit-text-stroke: 1px black;
-  -webkit-text-fill-color: #95bbe7;
+  -webkit-text-fill-color: var(--shop-blue);
   text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
     -1px 1px 0 #000, 1px 1px 0 #000;
 }
@@ -375,6 +419,10 @@ footer p {
 }
 
 /* -------- SHOP ITEM--------- */
+.product_title {
+  font-size: 2rem;
+}
+
 .single-product-category a {
   display: none;
 }
@@ -384,6 +432,15 @@ form.cart {
 }
 
 /* -------- CART --------- */
+.post-8 h1 {
+  font-size: 4rem;
+  color: #3a3a3a;
+  -webkit-text-stroke: 1px black;
+  -webkit-text-fill-color: var(--accent-coral);
+  text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
+    -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
 .wp-block-woocommerce-cart {
   padding: 0 15px;
 }
@@ -456,9 +513,18 @@ form.cart {
     outline: none;
   }
 
-  a.menu-link:hover {
-    color: rgb(155, 81, 224);
+  /*a.menu-link {
+    position: relative;
   }
+
+  a.menu-link::before {
+    
+  }
+
+  a.menu-link:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+  }*/
 
   h1 {
     word-break: normal;
