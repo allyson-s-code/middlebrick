@@ -44,15 +44,8 @@ h2 {
   font-family: "bc-alphapipe", sans-serif;
   font-size: 3em;
   font-weight: 700;
-  line-height: 1;
+  line-height: 1.2;
   letter-spacing: 0.1rem;
-}
-
-h1 {
-  width: 95%;
-  font-size: 3.15rem;
-  line-height: 1;
-  /*word-break: break-all;*/
 }
 
 h3 {
@@ -67,19 +60,6 @@ h3 {
 .ast-nav-menu {
   font-family: "bc-alphapipe", sans-serif;
 }
-
-.ast-nav-menu li a .menu-link:hover {
-  color: var(--shop-blue);
-}
-
-/*.ast-nav-menu .menu-item:first-child:hover {
-  color: var(--heading-home-color);
-}
-
-.ast-nav-menu .menu-item:last-child:hover {
-  color: var(--accent-coral);
-}
-*/
 
 /* ---------- General ----------- */
 /* gets rid of gap between blocks */
@@ -145,6 +125,7 @@ a {
 }
 
 .hero-title {
+  font-size: 3.25rem;
   color: #3a3a3a;
   -webkit-text-stroke: 1px black;
   -webkit-text-fill-color: var(--heading-home-color);
@@ -214,7 +195,7 @@ h1 {
 }
 
 .hero-images {
-  background-color: #3a3a3a;
+  background-color: #444444;
 }
 
 .hero-image,
@@ -245,6 +226,7 @@ h1 {
   object-fit: cover;
   transition-duration: 15s;
   transition-property: transform;
+  filter: drop-shadow(2px 3px 0 black);
 }
 
 .shop-entrance img:hover {
@@ -394,7 +376,7 @@ footer p {
 .page-title,
 .entry-title {
   font-weight: 700;
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 .woocommerce a.button,
@@ -415,7 +397,7 @@ footer p {
 }
 
 .woocommerce-products-header__title {
-  font-size: 4rem;
+  font-size: 3.25rem;
   color: #3a3a3a;
   -webkit-text-stroke: 1px black;
   -webkit-text-fill-color: var(--shop-blue);
@@ -446,7 +428,7 @@ form.cart {
 
 /* -------- CART --------- */
 .post-8 h1 {
-  font-size: 4rem;
+  font-size: 3.25rem;
   color: #3a3a3a;
   -webkit-text-stroke: 1px black;
   -webkit-text-fill-color: var(--accent-coral);
@@ -519,6 +501,7 @@ form.cart {
   /* to remove default grow effect on nav menu link hover*/
   .ast-desktop .ast-menu-hover-style-zoom > .menu-item > .menu-link:hover {
     transform: none;
+    font-weight: 700;
   }
 
   /* to remove default dotted border after clicking*/
@@ -526,21 +509,18 @@ form.cart {
     outline: none;
   }
 
-  /*a.menu-link {
-    position: relative;
+  .main-content {
+    padding-top: 50px;
   }
 
-  a.menu-link::before {
-    
+  .hero-container {
+    padding-bottom: 60px;
   }
 
-  a.menu-link:hover::before {
-    transform: scaleX(1);
-    transform-origin: left;
-  }*/
-
-  h1 {
-    word-break: normal;
+  .hero-title,
+  .woocommerce-products-header__title,
+  .post-8 .entry-title {
+    font-size: 4rem;
   }
 
   .shop-entrance {
@@ -555,7 +535,17 @@ form.cart {
 
 /* ------ Desktop ------ */
 @media screen and (min-width: 1024px) {
-  .hero-title {
+  .main-content {
+    padding-top: 70px;
+  }
+
+  .hero-container {
+    padding-bottom: 70px;
+  }
+
+  .hero-title,
+  .woocommerce-products-header__title,
+  .post-8 .entry-title {
     font-size: 5rem;
   }
 
