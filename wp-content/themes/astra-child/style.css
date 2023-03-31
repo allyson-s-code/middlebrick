@@ -23,6 +23,8 @@ Variables
 
 :root {
   --bg-home-cream: #f8f7f3;
+  --bg-home-dkcream: #f4eedf;
+  --bg-home-middlecream: #f7f3e9;
   --heading-home-color: #dde8cf;
   --shop-blue: #bed2e9;
   --accent-coral: #fdc0aa;
@@ -138,6 +140,10 @@ a {
   width: 100%;
 }
 
+.hero-images {
+  border-top: 2px solid black;
+}
+
 .hero-title {
   color: #3a3a3a;
   -webkit-text-stroke: 1px black;
@@ -146,11 +152,18 @@ a {
     -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
+.shop-link-heading,
+.recent-builds-heading,
+.random-builds-heading {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
 .home-page h2,
 .shop-link-h2 a {
   line-height: 1.1;
   color: #3a3a3a;
-  -webkit-text-fill-color: var(--bg-home-cream);
+  -webkit-text-fill-color: var(--bg-home-middlecream);
   text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
     -1px 1px 0 #000, 1px 1px 0 #000;
 }
@@ -542,14 +555,8 @@ form.cart {
 
 /* ------ Desktop ------ */
 @media screen and (min-width: 1024px) {
-  h2 {
-    font-size: 2.5rem;
-  }
-
-  .recent-builds-heading,
-  .shop-link-heading,
-  .random-builds-heading {
-    height: 100px;
+  .hero-title {
+    font-size: 5rem;
   }
 
   .about-wrapper {
