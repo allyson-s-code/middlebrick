@@ -72,6 +72,11 @@ body .is-layout-constrained > * + * {
   margin-block-start: 0;
 }
 
+/* Works as padding betweenn header and page content across all pages*/
+.site-content {
+  padding-top: 40px;
+}
+
 /* allows images to be full width, no border */
 .ast-container {
   padding: 0;
@@ -103,6 +108,7 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
   text-align: center;
   padding-top: 40px;
 }
@@ -149,22 +155,18 @@ a {
     -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
-.shop-link-h2 a:hover {
-  color: white;
-}
-
 .main-content {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 40px;
 }
 
 /* to make background color on home page different from woocommerce/general */
 .page-id-2 .site-primary-header-wrap,
-.page-id-2 .main-content {
+.page-id-2 .main-content,
+.page-id-2 .site-content {
   background: var(--bg-home-cream);
 }
 
@@ -179,6 +181,7 @@ a {
 
 /* Hero */
 .hero-container {
+  width: 95%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -230,25 +233,8 @@ h1 {
 }
 
 .shop-entrance img:hover {
-  /* animation : */
-  /*animation-name: rotate;
-  -webkit-animation-name: rotate;
-  animation-duration: 30s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  */
   transform: rotate(360deg);
 }
-
-/*@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-*/
 
 /* Featured Work */
 
@@ -273,6 +259,18 @@ h2 {
 .shop-link-heading {
   background-color: var(--shop-blue);
   text-align: right;
+}
+
+.shop-link-h2 {
+  transition: 0.3s ease-in-out;
+}
+
+.shop-link-h2:hover {
+  transform: scale(1.03);
+}
+
+.shop-link-h2:active {
+  transform: scale(0.98);
 }
 
 /* ------ About ------ */
@@ -394,6 +392,13 @@ footer p {
   background: linear-gradient(135deg, #5b8dcb 0%, rgb(65, 88, 208) 100%);
   color: white;
   opacity: 0.75;
+  transform: scale(1.02);
+}
+
+.woocommerce a.button:active,
+.woocommerce button.button.alt:active,
+.wc-block-components-button:active {
+  transform: scale(0.98);
 }
 
 .woocommerce-products-header__title {
@@ -495,21 +500,26 @@ form.cart {
 
 @media screen and (min-width: 768px) {
   header a.menu-link {
+    text-align: center;
     font-weight: 400;
+    line-height: 1;
   }
 
   /* to remove default grow effect on nav menu link hover*/
   .ast-desktop .ast-menu-hover-style-zoom > .menu-item > .menu-link:hover {
     transform: none;
-    font-weight: 700;
   }
 
-  /* to remove default dotted border after clicking*/
-  .ast-theme-transparent-header .main-header-menu .menu-link {
-    outline: none;
+  /* to remove default dotted border after clicking-it's recommended to leave for accessibility issues- if removed then another active state should be added*/
+  /*.ast-theme-transparent-header .main-header-menu .menu-link {
+    outline: 0;
+  }*/
+
+  .menu-link:hover {
+    text-shadow: 0 0 0.85px black, 0 0 0.85px black;
   }
 
-  .main-content {
+  .site-content {
     padding-top: 50px;
   }
 
@@ -528,14 +538,11 @@ form.cart {
   }
 
   /* ---- SHOP ---- */
-  .ast-woocommerce-container {
-    margin-top: 40px;
-  }
 }
 
 /* ------ Desktop ------ */
 @media screen and (min-width: 1024px) {
-  .main-content {
+  .site-content {
     padding-top: 70px;
   }
 
@@ -556,5 +563,11 @@ form.cart {
 
   .shop-entrance {
     background-size: 100px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .ast-plain-container.ast-no-sidebar #primary {
+    margin-top: 0;
   }
 }
