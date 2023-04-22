@@ -25,9 +25,12 @@ Variables
   --bg-home-cream: #f8f7f3;
   --bg-home-dkcream: #f4eedf;
   --bg-home-middlecream: #f7f3e9;
-  --heading-home-color: #dde8cf;
+  --heading-home-color: #d7e6c3;
   --shop-blue: #bed2e9;
   --accent-coral: #fdc0aa;
+  --home-bright: #77e48a;
+  --shop-bright: #87b2e4;
+  --cart-bright: #f7875e;
 }
 
 /* fonts */
@@ -348,6 +351,21 @@ footer p {
   margin-top: 20px;
 }
 
+#astra-footer-menu .menu-item:hover > a {
+  color: var(--shop-bright);
+  text-shadow: 0 0 1px var(--shop-bright), 0 0 1px var(--shop-bright);
+}
+
+#astra-footer-menu .menu-item:first-child:hover > a {
+  color: var(--home-bright);
+  text-shadow: 0 0 1px var(--home-bright), 0 0 1px var(--home-bright);
+}
+
+#astra-footer-menu .menu-item:last-child:hover > a {
+  color: var(--cart-bright);
+  text-shadow: 0 0 1px var(--cart-bright), 0 0 1px var(--cart-bright);
+}
+
 /* -------- SHOP--------- */
 /* General */
 .woo-commerce .site-header .main-header-bar {
@@ -516,7 +534,8 @@ form.cart {
   }*/
 
   .menu-link:hover {
-    text-shadow: 0 0 0.85px black, 0 0 0.85px black;
+    color: black;
+    text-shadow: 0 0 1px black, 0 0 1px black;
   }
 
   .site-content {
