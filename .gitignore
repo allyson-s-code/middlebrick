@@ -4,3 +4,5 @@ wp-config.php
 .htaccess
 wp-content/uploads
 wp-includes
+wp-content/plugins/mailpoet/assets/audio
+wp-content/themes/twentytwentytwo/assets/videos
