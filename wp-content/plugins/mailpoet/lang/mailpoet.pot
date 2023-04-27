@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the MailPoet plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: MailPoet 4.12.2\n"
+"Project-Id-Version: MailPoet 4.13.0\n"
 "Report-Msgid-Bugs-To: http://support.mailpoet.com/\n"
 "Last-Translator: MailPoet i18n (https://www.transifex.com/organization/wysija)\n"
 "Language-Team: MailPoet i18n <https://www.transifex.com/organization/wysija>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-04-21T09:49:55+00:00\n"
+"POT-Creation-Date: 2023-04-24T16:32:32+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -4153,7 +4153,6 @@ msgstr ""
 #: views/segments.html:52
 #: views/subscribers/importExport/import.html:128
 #: views/subscribers/subscribers.html:69
-#: lib/Automation/Integrations/MailPoet/Subjects/SubscriberSubject.php:82
 #: lib/Subscribers/SubscriberListingRepository.php:211
 #: lib/Subscription/ManageSubscriptionFormRenderer.php:180
 msgid "Subscribed"
@@ -4161,7 +4160,6 @@ msgstr ""
 
 #: views/segments.html:53
 #: views/subscribers/subscribers.html:68
-#: lib/Automation/Integrations/MailPoet/Subjects/SubscriberSubject.php:83
 #: lib/Subscribers/SubscriberListingRepository.php:216
 msgid "Unconfirmed"
 msgstr ""
@@ -4169,7 +4167,6 @@ msgstr ""
 #: views/segments.html:54
 #: views/subscribers/importExport/import.html:129
 #: views/subscribers/subscribers.html:70
-#: lib/Automation/Integrations/MailPoet/Subjects/SubscriberSubject.php:84
 #: lib/Subscribers/SubscriberListingRepository.php:221
 #: lib/Subscription/ManageSubscriptionFormRenderer.php:188
 msgid "Unsubscribed"
@@ -4185,7 +4182,6 @@ msgstr ""
 
 #: views/segments.html:56
 #: views/subscribers/subscribers.html:72
-#: lib/Automation/Integrations/MailPoet/Subjects/SubscriberSubject.php:85
 #: lib/Subscribers/SubscriberListingRepository.php:231
 #: lib/Subscription/ManageSubscriptionFormRenderer.php:196
 msgid "Bounced"
@@ -4425,6 +4421,7 @@ msgid "not equals"
 msgstr ""
 
 #: views/segments.html:153
+#: lib/Automation/Integrations/Core/Filters/StringFilter.php:31
 msgid "contains"
 msgstr ""
 
@@ -7065,8 +7062,8 @@ msgstr ""
 msgid "Automatic email event does not exist."
 msgstr ""
 
-#: lib/API/JSON/v1/CustomFields.php:47
-#: lib/API/JSON/v1/CustomFields.php:70
+#: lib/API/JSON/v1/CustomFields.php:53
+#: lib/API/JSON/v1/CustomFields.php:77
 msgid "This custom field does not exist."
 msgstr ""
 
@@ -7767,124 +7764,134 @@ msgid "Root step"
 msgstr ""
 
 #. translators: %s is the error message.
-#: lib/Automation/Engine/Exceptions.php:47
-msgid "Migration failed: %s"
-msgstr ""
-
-#. translators: %s is the error message.
-#: lib/Automation/Engine/Exceptions.php:54
+#: lib/Automation/Engine/Exceptions.php:49
 msgid "Database error: %s"
 msgstr ""
 
 #. translators: %s is the mentioned JSON string.
-#: lib/Automation/Engine/Exceptions.php:61
+#: lib/Automation/Engine/Exceptions.php:56
 msgid "JSON string '%s' doesn't encode an object."
 msgstr ""
 
 #. translators: %d is the ID of the automation.
-#: lib/Automation/Engine/Exceptions.php:68
+#: lib/Automation/Engine/Exceptions.php:63
 msgid "Automation with ID '%d' not found."
 msgstr ""
 
 #. translators: %1$s is the ID of the automation, %2$s the version.
-#: lib/Automation/Engine/Exceptions.php:75
+#: lib/Automation/Engine/Exceptions.php:70
 msgid "Automation with ID \"%1$s\" in version \"%2$s\" not found."
 msgstr ""
 
 #. translators: %1$s is the ID of the automation.
-#: lib/Automation/Engine/Exceptions.php:82
+#: lib/Automation/Engine/Exceptions.php:77
 msgid "Automation with ID \"%1$s\" in no longer active."
 msgstr ""
 
 #. translators: %d is the ID of the automation run.
-#: lib/Automation/Engine/Exceptions.php:89
+#: lib/Automation/Engine/Exceptions.php:84
 msgid "Automation run with ID '%d' not found."
 msgstr ""
 
 #. translators: %s is the key of the automation step.
-#: lib/Automation/Engine/Exceptions.php:96
+#: lib/Automation/Engine/Exceptions.php:91
 msgid "Automation step with key '%s' not found."
 msgstr ""
 
 #. translators: %1$s is the key, %2$d is the automation ID.
-#: lib/Automation/Engine/Exceptions.php:103
+#: lib/Automation/Engine/Exceptions.php:98
 msgid "Automation trigger with key \"%1$s\" not found in automation ID \"%2$d\"."
 msgstr ""
 
 #. translators: %1$d is the ID of the automation run, %2$s its current status.
-#: lib/Automation/Engine/Exceptions.php:110
+#: lib/Automation/Engine/Exceptions.php:105
 msgid "Automation run with ID \"%1$d\" is not running. Status: %2$s"
 msgstr ""
 
 #. translators: %s is the key of the subject not found.
-#: lib/Automation/Engine/Exceptions.php:117
+#: lib/Automation/Engine/Exceptions.php:112
 msgid "Subject with key '%s' not found."
 msgstr ""
 
 #. translators: %s is the class name of the subject not found.
-#: lib/Automation/Engine/Exceptions.php:124
+#: lib/Automation/Engine/Exceptions.php:119
 msgid "Subject of class '%s' not found."
 msgstr ""
 
 #. translators: %1$s is the name of the key, %2$s the arguments.
-#: lib/Automation/Engine/Exceptions.php:131
+#: lib/Automation/Engine/Exceptions.php:126
 msgid "Subject with key \"%1$s\" and args \"%2$s\" failed to load."
 msgstr ""
 
-#: lib/Automation/Engine/Exceptions.php:139
+#: lib/Automation/Engine/Exceptions.php:134
 msgid "Subject data for subject with key '%1$s' not found for automation run with ID '%2$d'."
 msgstr ""
 
-#: lib/Automation/Engine/Exceptions.php:148
+#: lib/Automation/Engine/Exceptions.php:143
 msgid "Multiple subjects with key '%1$s' found for automation run with ID '%2$d', only one expected."
 msgstr ""
 
-#: lib/Automation/Engine/Exceptions.php:157
+#: lib/Automation/Engine/Exceptions.php:152
 msgid "Payload of class '%1$s' not found for automation run with ID '%2$d'."
 msgstr ""
 
-#: lib/Automation/Engine/Exceptions.php:166
+#: lib/Automation/Engine/Exceptions.php:161
 msgid "Multiple payloads of class '%1$s' found for automation run with ID '%2$d'."
 msgstr ""
 
-#: lib/Automation/Engine/Exceptions.php:173
+#. translators: %s is the key of the field not found.
+#: lib/Automation/Engine/Exceptions.php:169
+msgid "Field with key '%s' not found."
+msgstr ""
+
+#. translators: %1$s is the key of the field, %2$s its arguments.
+#: lib/Automation/Engine/Exceptions.php:176
+msgid "Field with key \"%1$s\" and args \"%2$s\" failed to load."
+msgstr ""
+
+#. translators: %s is the type of the field for which a filter was not found.
+#: lib/Automation/Engine/Exceptions.php:183
+msgid "Filter for field of type '%s' not found."
+msgstr ""
+
+#: lib/Automation/Engine/Exceptions.php:189
 msgid "Automation structure modification not supported."
 msgstr ""
 
 #. translators: %s is a detailed information
-#: lib/Automation/Engine/Exceptions.php:180
+#: lib/Automation/Engine/Exceptions.php:196
 msgid "Invalid automation structure: %s"
 msgstr ""
 
-#: lib/Automation/Engine/Exceptions.php:190
+#: lib/Automation/Engine/Exceptions.php:206
 msgid "Modification of step '%1$s' of type '%2$s' with ID '%3$s' is not supported when the related plugin is not active."
 msgstr ""
 
 #. translators: %s is a detailed information
-#: lib/Automation/Engine/Exceptions.php:202
+#: lib/Automation/Engine/Exceptions.php:218
 msgid "Automation validation failed: %s"
 msgstr ""
 
-#: lib/Automation/Engine/Exceptions.php:212
+#: lib/Automation/Engine/Exceptions.php:228
 msgid "Step with ID '%1$s' is missing required subjects with keys: %2$s"
 msgstr ""
 
-#: lib/Automation/Engine/Exceptions.php:218
+#: lib/Automation/Engine/Exceptions.php:234
 msgid "This step can not be used with the selected trigger."
 msgstr ""
 
 #. translators: %d is the ID of the automation.
-#: lib/Automation/Engine/Exceptions.php:226
+#: lib/Automation/Engine/Exceptions.php:242
 msgid "Can't delete automation with ID '%d' because it was not trashed."
 msgstr ""
 
 #. translators: %d is the ID of the automation template.
-#: lib/Automation/Engine/Exceptions.php:233
+#: lib/Automation/Engine/Exceptions.php:249
 msgid "Automation template with ID '%d' not found."
 msgstr ""
 
 #. translators: %d is the ID of the automation.
-#: lib/Automation/Engine/Exceptions.php:243
+#: lib/Automation/Engine/Exceptions.php:259
 msgid "Can not update automation with ID '%d' because users are currently active."
 msgstr ""
 
@@ -8076,6 +8083,50 @@ msgstr ""
 msgid "A delay can't be longer than two years"
 msgstr ""
 
+#: lib/Automation/Integrations/Core/Filters/EnumArrayFilter.php:22
+msgid "matches any of"
+msgstr ""
+
+#: lib/Automation/Integrations/Core/Filters/EnumArrayFilter.php:23
+msgid "matches all of"
+msgstr ""
+
+#: lib/Automation/Integrations/Core/Filters/EnumArrayFilter.php:24
+msgid "matches none of"
+msgstr ""
+
+#: lib/Automation/Integrations/Core/Filters/StringFilter.php:29
+msgid "is"
+msgstr ""
+
+#: lib/Automation/Integrations/Core/Filters/StringFilter.php:30
+msgid "is not"
+msgstr ""
+
+#: lib/Automation/Integrations/Core/Filters/StringFilter.php:32
+msgid "does not contain"
+msgstr ""
+
+#: lib/Automation/Integrations/Core/Filters/StringFilter.php:33
+msgid "starts with"
+msgstr ""
+
+#: lib/Automation/Integrations/Core/Filters/StringFilter.php:34
+msgid "ends with"
+msgstr ""
+
+#: lib/Automation/Integrations/Core/Filters/StringFilter.php:35
+msgid "is blank"
+msgstr ""
+
+#: lib/Automation/Integrations/Core/Filters/StringFilter.php:36
+msgid "is not blank"
+msgstr ""
+
+#: lib/Automation/Integrations/Core/Filters/StringFilter.php:37
+msgid "matches regex"
+msgstr ""
+
 #: lib/Automation/Integrations/MailPoet/Actions/SendEmailAction.php:63
 #: lib/Automation/Integrations/MailPoet/Actions/SendEmailAction.php:76
 #: assets/dist/js/automation_editor.js:1
@@ -8107,33 +8158,17 @@ msgstr ""
 msgid "Segment with ID '%d' not found."
 msgstr ""
 
-#: lib/Automation/Integrations/MailPoet/Subjects/SegmentSubject.php:60
-msgid "Segment ID"
-msgstr ""
-
-#: lib/Automation/Integrations/MailPoet/Subjects/SegmentSubject.php:68
-msgid "Segment name"
-msgstr ""
-
-#: lib/Automation/Integrations/MailPoet/Subjects/SubscriberSubject.php:36
+#: lib/Automation/Integrations/MailPoet/Subjects/SubscriberSubject.php:48
 msgid "MailPoet subscriber"
 msgstr ""
 
 #. translators: %d is the ID.
-#: lib/Automation/Integrations/MailPoet/Subjects/SubscriberSubject.php:50
+#: lib/Automation/Integrations/MailPoet/Subjects/SubscriberSubject.php:62
 msgid "Subscriber with ID '%d' not found."
 msgstr ""
 
-#: lib/Automation/Integrations/MailPoet/Subjects/SubscriberSubject.php:61
-msgid "Subscriber ID"
-msgstr ""
-
-#: lib/Automation/Integrations/MailPoet/Subjects/SubscriberSubject.php:69
-msgid "Subscriber email"
-msgstr ""
-
-#: lib/Automation/Integrations/MailPoet/Subjects/SubscriberSubject.php:77
-msgid "Subscriber status"
+#: lib/Automation/Integrations/MailPoet/Subjects/SubscriberSubject.php:108
+msgid "Subscriber segments"
 msgstr ""
 
 #: lib/Automation/Integrations/MailPoet/Triggers/SomeoneSubscribesTrigger.php:43
@@ -10326,7 +10361,7 @@ msgstr ""
 
 #. translators: %s is the type which was given.
 #: lib/Newsletter/Scheduler/AutomationEmailScheduler.php:35
-msgid "Email with type 'automation' or 'transactional' expected, '%s' given."
+msgid "Email with type 'automation' or 'automation_transactional' expected, '%s' given."
 msgstr ""
 
 #: lib/Newsletter/Sending/ScheduledTaskSubscribersListingRepository.php:58
@@ -12434,6 +12469,42 @@ msgstr ""
 
 #: assets/dist/js/automation_editor.js:1
 msgid "Step"
+msgstr ""
+
+#: assets/dist/js/automation_editor.js:1
+msgid "Unknown value"
+msgstr ""
+
+#: assets/dist/js/automation_editor.js:1
+msgid "and unknown values"
+msgstr ""
+
+#: assets/dist/js/automation_editor.js:1
+msgid "Removing trigger filters is a premium feature."
+msgstr ""
+
+#: assets/dist/js/automation_editor.js:1
+msgid "Unknown field \"%s\""
+msgstr ""
+
+#: assets/dist/js/automation_editor.js:1
+msgid "unknown condition"
+msgstr ""
+
+#: assets/dist/js/automation_editor.js:1
+msgid "Adding trigger filters is a premium feature."
+msgstr ""
+
+#: assets/dist/js/automation_editor.js:1
+msgid "Add trigger filter"
+msgstr ""
+
+#: assets/dist/js/automation_editor.js:1
+msgid "Trigger filters"
+msgstr ""
+
+#: assets/dist/js/automation_editor.js:1
+msgid "The automation would only be started if the following trigger conditions are met:"
 msgstr ""
 
 #: assets/dist/js/automation_editor.js:1

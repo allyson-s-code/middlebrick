@@ -125,6 +125,7 @@ class ContainerConfigurator implements IContainerConfigurator {
     $container->autowire(\MailPoet\Automation\Engine\Builder\UpdateAutomationController::class)->setPublic(true);
     $container->autowire(\MailPoet\Automation\Engine\Control\ActionScheduler::class)->setPublic(true);
     $container->autowire(\MailPoet\Automation\Engine\Control\RootStep::class)->setPublic(true);
+    $container->autowire(\MailPoet\Automation\Engine\Control\FilterHandler::class)->setPublic(true);
     $container->autowire(\MailPoet\Automation\Engine\Control\StepHandler::class)->setPublic(true);
     $container->autowire(\MailPoet\Automation\Engine\Control\SubjectTransformerHandler::class)->setPublic(true)->setShared(false);
     $container->autowire(\MailPoet\Automation\Engine\Control\SubjectLoader::class)->setPublic(true);
@@ -142,6 +143,7 @@ class ContainerConfigurator implements IContainerConfigurator {
     $container->autowire(\MailPoet\Automation\Engine\Validation\AutomationGraph\AutomationWalker::class)->setPublic(true);
     $container->autowire(\MailPoet\Automation\Engine\Validation\AutomationRules\UnknownStepRule::class)->setPublic(true);
     $container->autowire(\MailPoet\Automation\Engine\Validation\AutomationRules\ValidStepArgsRule::class)->setPublic(true);
+    $container->autowire(\MailPoet\Automation\Engine\Validation\AutomationRules\ValidStepFiltersRule::class)->setPublic(true);
     $container->autowire(\MailPoet\Automation\Engine\Validation\AutomationRules\ValidStepOrderRule::class)->setPublic(true);
     $container->autowire(\MailPoet\Automation\Engine\Validation\AutomationRules\ValidStepValidationRule::class)->setPublic(true);
     $container->autowire(\MailPoet\Automation\Engine\Validation\AutomationValidator::class)->setPublic(true);
@@ -389,6 +391,7 @@ class ContainerConfigurator implements IContainerConfigurator {
     $container->autowire(\MailPoet\Segments\WooCommerce::class)->setPublic(true);
     $container->autowire(\MailPoet\Segments\WP::class)->setPublic(true);
     $container->autowire(\MailPoet\Segments\SubscribersFinder::class)->setPublic(true);
+    $container->autowire(\MailPoet\Segments\SegmentsFinder::class)->setPublic(true);
     $container->autowire(\MailPoet\Segments\SegmentsRepository::class)->setPublic(true);
     $container->autowire(\MailPoet\Segments\SegmentSubscribersRepository::class)->setPublic(true);
     $container->autowire(\MailPoet\Segments\SegmentListingRepository::class)->setPublic(true);
