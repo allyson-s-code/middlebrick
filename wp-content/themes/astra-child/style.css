@@ -66,6 +66,7 @@ h3 {
 
 /* ---------- General ----------- */
 /* gets rid of gap between blocks */
+
 body {
   --wp--style--block-gap: 0;
   margin-block-start: 0;
@@ -73,6 +74,18 @@ body {
 
 body .is-layout-constrained > * + * {
   margin-block-start: 0;
+}
+
+/* takes away extra space in img container*/
+figure {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+}
+
+img {
+  display: block;
 }
 
 /* Works as padding between header and page content across all pages*/
@@ -176,10 +189,12 @@ a {
 .hero-images,
 .recent-builds {
   width: 100%;
+  height: auto;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  padding: 0;
 }
 
 /* Hero */
@@ -227,7 +242,7 @@ h1 {
 
 .shop-entrance img {
   width: 55%;
-  max-width: 550px;
+  max-width: 500px;
   height: auto;
   object-fit: cover;
   transition-duration: 15s;
