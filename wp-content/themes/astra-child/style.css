@@ -292,16 +292,16 @@ h2 {
 }
 
 /* ------ About ------ */
-.about-wrapper {
+.about {
   width: 90%;
   padding: 50px 0 75px 0;
 }
 
-.about-wrapper h2 {
+.about h3 {
   width: 100%;
 }
 
-.about-text-wrapper {
+.about_text-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -309,8 +309,9 @@ h2 {
   text-align: left;
 }
 
-.about-text-container p {
+.about_text-wrapper p {
   margin-top: 20px;
+  margin-bottom: 0;
 }
 
 /* ------ Random Builds ------ */
@@ -540,7 +541,7 @@ form.cart {
     width: 85%;
   }
 
-  .about-wrapper {
+  .about {
     width: 85%;
     padding: 75px 0 100px 0;
   }
@@ -621,7 +622,7 @@ form.cart {
     font-size: 5rem;
   }
 
-  .about-wrapper {
+  .about {
     max-width: 1000px;
     padding: 120px 0 150px 0;
   }

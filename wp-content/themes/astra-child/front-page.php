@@ -69,6 +69,27 @@ get_header(); ?>
 				</h2>
 			</div>
 
+			<div class="about">
+				<h3>About</h3>
+				<div class="about_text-wrapper">
+					<?php query_posts('posts_per_page=1&post_type=about');?>
+						<?php while ( have_posts() ) : the_post(); 
+							$about1 = get_field("paragraph_1");
+							$about2 = get_field("paragraph_2");
+						?>
+							<p><?php echo $about1; ?></p> 
+							<p><?php echo $about2; ?></p> 
+						<?php endwhile; ?>
+					<?php wp_reset_query(); ?>
+				</div>
+			</div>
+
+			<div class="random-builds-heading">
+				<h2>Build Feed</h2>
+			</div>
+
+			
+			<?php echo do_shortcode('[instagram-feed feed=1]'); ?>
 			
 		</div><!-- .main-content -->
 		
