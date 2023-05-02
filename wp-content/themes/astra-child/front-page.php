@@ -30,12 +30,15 @@ get_header(); ?>
 				<?php query_posts('post_type=hero_image'); ?>
 				<?php while ( have_posts() ) : the_post(); 
 					$image = get_field("hero_image");
+					$url = get_field("shop_page_url");
 					$size = "full";
 				?>
 				<figure class="hero-image">
-					<?php if ($image) {
-						echo wp_get_attachment_image( $image, $size );
-					} ?>
+					<a href="<?php echo site_url($url) ?>">
+						<?php if ($image) {
+							echo wp_get_attachment_image( $image, $size );
+						} ?>
+					</a>
 				</figure>	
 				<?php endwhile; // end of the loop. ?>
 				<figure class="hero-image shop-entrance animate rotate">
@@ -52,12 +55,15 @@ get_header(); ?>
 				<?php query_posts('posts_per_page=2&post_type=recent_builds'); ?>
 				<?php while ( have_posts() ) : the_post(); 
 					$image = get_field("recent_build");
+					$url = get_field("shop_page_url");
 					$size = "full";
 				?>
 				<figure class="recent-build">
-					<?php if ($image) {
-						echo wp_get_attachment_image( $image, $size );
-					} ?>
+					<a href="<?php echo site_url($url) ?>">
+						<?php if ($image) {
+							echo wp_get_attachment_image( $image, $size );
+						} ?>
+					</a>
 				</figure>
 				<?php endwhile; ?>
 				<?php wp_reset_query(); ?>
@@ -73,12 +79,8 @@ get_header(); ?>
 				<h3>About</h3>
 				<div class="about_text-wrapper">
 					<?php query_posts('posts_per_page=1&post_type=about');?>
-						<?php while ( have_posts() ) : the_post(); 
-							$about1 = get_field("paragraph_1");
-							$about2 = get_field("paragraph_2");
-						?>
-							<p><?php echo $about1; ?></p> 
-							<p><?php echo $about2; ?></p> 
+						<?php while ( have_posts() ) : the_post(); ?>
+							<?php the_field('about_description'); ?>
 						<?php endwhile; ?>
 					<?php wp_reset_query(); ?>
 				</div>
