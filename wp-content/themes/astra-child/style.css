@@ -394,7 +394,6 @@ footer p {
 
 .ast-woocommerce-container {
   width: 90%;
-  max-width: 900px;
 }
 
 .woocommerce-breadcrumb,
@@ -469,6 +468,11 @@ form.cart {
 }
 
 /* -------- CART --------- */
+
+.woocommerce-checkout {
+  padding: 0 5px;
+}
+
 .post-8 h1 {
   font-size: 3.25rem;
   color: #3a3a3a;
@@ -482,8 +486,26 @@ form.cart {
   padding: 0 15px;
 }
 
+/*.wc-block-cart-items__row {
+  grid-template-columns: 100px 112px !important;
+}*/
+
+.wc-block-cart-item__image {
+  padding-right: 0 !important;
+}
+
+.wc-block-cart-item__product {
+  padding: 0 0 0 16px !important;
+}
+
+.wc-block-cart__submit-container {
+  display: flex;
+  justify-content: center;
+}
+
 .wc-block-cart__submit-button {
   border-radius: 30px;
+  max-width: 550px;
 }
 
 .wp-block-woocommerce-cart-order-summary-block {
@@ -552,10 +574,6 @@ form.cart {
   }
 
   /* ------ Shop Cart ------ */
-  .wp-block-woocommerce-cart {
-    padding-left: 0;
-    padding-right: 0;
-  }
 
   /* Empty Cart- New in Store */
   .wc-block-product-new {
@@ -604,6 +622,14 @@ form.cart {
   }
 
   /* ---- SHOP ---- */
+  /* ---- CART ---- */
+  .wc-block-cart-items__row {
+    grid-template-columns: 100px 112px !important;
+  }
+
+  .woocommerce-checkout {
+    padding: 0 15px;
+  }
 }
 
 /* ------ Desktop ------ */
