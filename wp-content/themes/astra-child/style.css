@@ -662,4 +662,10 @@ form.cart {
   .ast-plain-container.ast-no-sidebar #primary {
     margin-top: 0;
   }
+
+  /* ---- SHOP ---- */
+  /* ---- SINGLE ITEM ---- */
+  .site-main > .ast-woocommerce-container {
+    max-width: 1240px;
+  }
 }
