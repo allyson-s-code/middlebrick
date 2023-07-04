@@ -4,7 +4,7 @@
   Plugin Name: 3CX Live Chat
   Plugin URI: https://www.3cx.com/wp-live-chat/
   Description: Live chat and voice/video call for web visitors. Setup a free portal account for unlimited agents and then activate the plugin.
-  Version: 10.0.8
+  Version: 10.0.9
   Author: 3CX
   Author URI: https://www.3cx.com/wp-live-chat/
   Domain Path: /languages
@@ -71,7 +71,7 @@ require plugin_dir_path(__FILE__) . 'includes/class-wplc-plugin.php';
 function wplc_generate_startup_url($hasemail) {
   $url = 'https://www.3cx.com/signin-google?wordpress=1';
   if ($hasemail){
-    $url = 'https://www.3cx.com/startup/?wordpress=1';
+    $url = 'https://www.3cx.com/signup/?wordpress=1';
   }
   if ($hasemail) {
     $current_user = wp_get_current_user();

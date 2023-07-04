@@ -1,8 +1,8 @@
-=== 3CX Free Live Chat ===
+=== 3CX Free Live Chat, Calls & WhatsApp ===
 Contributors: WP-LiveChat, wordpress3cx, wp3cx
 Tags: chat plugin, live chat, free live chat, live help, live support, wordpress live chat
 Requires at least: 5.3
-Tested up to: 6.1
+Tested up to: 6.2
 Requires PHP: 5.4
 Stable tag: 10.0.8
 License: GPLv2
@@ -13,37 +13,31 @@ Chat with your website visitors in real-time for free! Engage with your customer
 
 == Description ==
 
-Connect with your website visitors for free with the 3CX Live Chat plugin which works with 3CX. With more than 30,000 active installations, 3CX Live Chat is a reliable and tested live chat solution for WordPress. Not just a live chat solution, with 3CX Live Chat you get integrated voice, video & team collaboration features included. [Get 3CX free](https://www.3cx.com/signup/) forever, and benefit from:
+Connect with your website visitors for free with the [3CX Live Chat](https://www.3cx.com/signup/) plugin. With more than 30,000 active installations, 3CX Live Chat is a reliable and tested free live chat solution for WordPress. Unlike other live chat solutions, 3CX gives you free integrated voice, video and team collaboration features without compromising on any of the business benefits.
 
-* Increased sales: connect with website visitors & potential leads in real-time as they browse your website. 
-* Quicker resolution: switch from chat to call at any point to resolve issues faster via voice.
-* Free calls: invite web visitors to contact you via ‘3CX Talk’ links. No dialing of numbers
-* Increased collaboration: forward chats & discuss customer issues with your team.
-* Never leave a chat unanswered: assign chats to groups, including queue-based group handling of chats.
-* Meet over video: connect with visitors over video call or set up video conferences for company wide meetings.
-* Work remotely: respond to live chats on the go with included iOS & Android apps.
-* One system for all: answer calls, live chats, SMS, Facebook and WhatsApp messages all from the same interface
-* Know who’s chatting: identify existing customers and bring up their contact records all from same interface
-* Improved productivity: extensive chat and call reports to evaluate agent performance
-* Free edition is free forever. No per user per month licensing
+Start managing your communications - at zero cost per year - centrally and easily through one hub. If chats don’t cut to the chase, switch to free audio and video calls direct from the browser. But that’s not all. Besides your live chat, customers can connect via Whatsapp, Facebook and Text too. It’s a sale waiting to happen! 
 
-= Other chat features =
+= Free - and we really mean free =
+3CX is completely [free](https://www.3cx.com/signup/), forever. Whether it’s one million chats or a 10 agent team it’s [free forever](https://www.3cx.com/signup/).
 
-* Fully customizable chat box
-* Full anonymity for your visitors
-* Create custom offline message forms & store messages offline
-* Access historical live chat records
-* View missed live chats
-* Chats sent and received at lightning fast speed via 3CX Live Chat Servers
-* Compatible with all caching plugins (live chat window loaded via Ajax)
-* Enable/Disable sound when a new live chat message is received
-* Ban visitors from chatting to you based on IP Address
-* Quick responses (insert a predefined response to your live chat box)
-* Customer satisfaction ratings for each chat session
-* Add your company logo to the live chat window
-* Add your photo to the live chat window
-* Include/exclude the live chat from appearing on certain pages
-* Choose when to accept chats
+= And not just chats - Voice, WhatsApp too! =
+* Deliver WhatsApp business messages direct to your Web Client, Desktop and Smartphone Apps
+* If you need it - there’s Facebook and Text messaging too!
+* Free live calls - allowing voice calls direct from the browser
+* Team Messaging - to answer, transfer and resolve customer queries on one platform across multiple agents
+* And replace your old phone system with a new cloud one - free
+* Get [3CX free forever](https://www.3cx.com/signup/) …and benefit forever!
+
+= Why 3CX Is Your #1 Live Chat Solution =
+* Live Chat
+* Inbound WhatsApp, FB, Text
+* Video Conferencing x 25
+* 3CX Talk / Meet Links
+* Mobile & Desktop Apps
+* Hosted on Cloud
+* Choose your SIP Trunk
+* Ring Group
+* Auto Attendant
 
 = Video: How to Set Up 3CX StartUP and Live Chat =
 [youtube http://youtube.com/watch?v=onawKT7y5P8]
@@ -66,7 +60,7 @@ Get 3CX
 
 = How do I get 3CX StartUP Free? =
 3CX StartUP is an easy to setup and manage communications platform that handles live chat as well as calls, video conferencing and team communications. Ideal for small to medium sized businesses. It is available in the cloud and offered for free.
-1. Sign up for a 3CX account [here](https://www.3cx.com/startup?src=livechatwp)
+1. Sign up for a 3CX account [here](https://www.3cx.com/signup/?src=livechatwp)
 2. Install the WordPress Plugin on your website
 3. With the credentials you receive login to the Web Client 
 4. Go to Office Settings > Voice & Chat > Add Live Chat
@@ -90,6 +84,9 @@ With 3CX Dedicated (hosted or self-managed) you get live chat included free for 
 Huge update with over 300 changes that include: Bugfixes, Vulnerability Fixes & Plugin Security, Plugin Optimization & Rebranding Updates. We suggest you remove any existing installations of this plugin and install 8.1.x fresh.
 
 == Changelog ==
+
+= 10.0.9 - 2023-06-30 =
+* Changed signup URL
 
 = 10.0.8 - 2023-03-10 =
 * Added reset configuration
