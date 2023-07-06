@@ -241,7 +241,7 @@ h1 {
 }
 
 .shop-entrance img {
-  width: 55%;
+  width: 65%;
   max-width: 500px;
   height: auto;
   object-fit: cover;
@@ -250,8 +250,22 @@ h1 {
   filter: drop-shadow(3px 4px 0 black);
 }
 
-.shop-entrance img:hover {
+/* On smaller screens the img will rotate automatically- change to on hover on larger screens*/
+/*.shop-entrance img {
   transform: rotate(360deg);
+}*/
+
+.shop-entrance img {
+  animation: rotation 15s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }
 
 /* Featured Work */

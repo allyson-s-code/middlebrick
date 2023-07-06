@@ -41,7 +41,7 @@ get_header(); ?>
 					</a>
 				</figure>	
 				<?php endwhile; // end of the loop. ?>
-				<figure class="hero-image shop-entrance animate rotate">
+				<figure class="hero-image shop-entrance">
 					<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/Middlebrick-Shop-Entrance.png" alt="Enter Middlebrick shop graphic">
 				
 				</figure>
