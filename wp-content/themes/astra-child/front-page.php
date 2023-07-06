@@ -42,8 +42,9 @@ get_header(); ?>
 				</figure>	
 				<?php endwhile; // end of the loop. ?>
 				<figure class="hero-image shop-entrance">
+					<a href="<?php echo site_url('/middlebrick/shop/') ?>">
 					<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/Middlebrick-Shop-Entrance.png" alt="Enter Middlebrick shop graphic">
-				
+					</a>
 				</figure>
 			</div>
 
