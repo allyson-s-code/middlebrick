@@ -246,6 +246,7 @@ h1 {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .shop-entrance img {
@@ -256,6 +257,39 @@ h1 {
   transition-duration: 15s;
   transition-property: transform;
   filter: drop-shadow(3px 4px 0 black);
+}
+
+.btn_shop-now {
+  position: absolute;
+  display: block;
+  width: 35%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--bg-home-cream);
+  color: black;
+  border: 1px solid black;
+  box-shadow: 2px 3px 0 black;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.15rem;
+  text-decoration: underline;
+  transition: 0.3s ease-in-out;
+}
+
+.btn_shop-now:visited,
+.btn_shop-now:focus {
+  background: var(--bg-home-cream);
+  color: black;
+}
+
+.btn_shop-now:hover {
+  background: linear-gradient(135deg, #5b8dcb 0%, rgb(65, 88, 208) 100%);
+  transform: scale(1.03);
+  color: white;
+}
+
+.btn_shop-now:active {
+  transform: scale(0.98);
 }
 
 /* On smaller screens the img will rotate automatically- change to on hover on larger screens*/
@@ -677,6 +711,10 @@ form.cart {
 
   .shop-entrance {
     background-size: 100px;
+  }
+
+  .btn_shop-now {
+    font-size: 1.5rem;
   }
 }
 

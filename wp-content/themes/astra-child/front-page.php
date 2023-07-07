@@ -44,6 +44,7 @@ get_header(); ?>
 				<figure class="hero-image shop-entrance">
 					<a href="<?php echo site_url('/middlebrick/shop/') ?>">
 					<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/Middlebrick-Shop-Entrance.png" alt="Enter Middlebrick shop graphic">
+					<button class="btn_shop-now">Shop<br>Now</button>
 					</a>
 				</figure>
 			</div>
