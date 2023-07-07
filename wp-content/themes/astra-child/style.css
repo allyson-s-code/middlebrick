@@ -129,6 +129,19 @@ a {
   padding-top: 40px;
 }
 
+#masthead .ast-mobile-header-wrap .ast-primary-header-bar {
+  padding-left: 31px;
+}
+
+.custom-logo {
+  width: 50px;
+  height: auto;
+}
+
+#masthead .ast-container {
+  padding-left: 51px;
+}
+
 #ast-hf-mobile-menu a.menu-link {
   font-size: 3rem;
   font-weight: 400;
@@ -263,6 +276,7 @@ h1 {
   position: absolute;
   display: block;
   width: 35%;
+  max-width: 275px;
   aspect-ratio: 1;
   border-radius: 50%;
   background: var(--bg-home-cream);
