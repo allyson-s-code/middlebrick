@@ -467,7 +467,8 @@ footer p {
 .woocommerce-notices-wrapper,
 .woocommerce-result-count,
 .woocommerce-ordering,
-.woocommerce .products .star-rating {
+.woocommerce .products .star-rating,
+.woocommerce-page ul.products li.product .ast-woo-product-category {
   display: none;
 }
 
