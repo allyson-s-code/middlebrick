@@ -129,6 +129,7 @@ a {
   padding-top: 40px;
 }
 
+/* If logo is added to header-
 #masthead .ast-mobile-header-wrap .ast-primary-header-bar {
   padding-left: 31px;
 }
@@ -141,6 +142,7 @@ a {
 #masthead .ast-container {
   padding-left: 51px;
 }
+*/
 
 #ast-hf-mobile-menu a.menu-link {
   font-size: 3rem;
@@ -287,7 +289,7 @@ h1 {
   line-height: 1.4;
   letter-spacing: 0.15rem;
   text-decoration: underline;
-  transition: 0.3s ease-in-out;
+  transition: 0.4s ease-in-out;
 }
 
 .btn_shop-now:visited,
@@ -298,18 +300,13 @@ h1 {
 
 .btn_shop-now:hover {
   background: linear-gradient(135deg, #5b8dcb 0%, rgb(65, 88, 208) 100%);
-  transform: scale(1.03);
+  transform: scale(1.02);
   color: white;
 }
 
 .btn_shop-now:active {
   transform: scale(0.98);
 }
-
-/* On smaller screens the img will rotate automatically- change to on hover on larger screens*/
-/*.shop-entrance img {
-  transform: rotate(360deg);
-}*/
 
 .shop-entrance img {
   animation: rotation 15s infinite linear;
@@ -320,7 +317,7 @@ h1 {
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(359deg);
+    transform: rotate(-359deg);
   }
 }
 
@@ -354,7 +351,7 @@ h2 {
 }
 
 .shop-link-h2:hover {
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
 .shop-link-h2:active {
