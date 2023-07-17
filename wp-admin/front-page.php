@@ -42,7 +42,7 @@ get_header(); ?>
 				</figure>	
 				<?php endwhile; // end of the loop. ?>
 				<figure class="hero-image shop-entrance">
-					<a href="<?php echo site_url('/shop/') ?>">
+					<a href="<?php echo site_url('/middlebrick/shop/') ?>">
 					<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/Middlebrick-Shop-Entrance.png" alt="Enter Middlebrick shop graphic">
 					<button class="btn_shop-now">Shop<br>Now</button>
 					</a>
@@ -61,7 +61,7 @@ get_header(); ?>
 					$size = "full";
 				?>
 				<figure class="recent-build">
-					<a href="<?php echo $url ?>">
+					<a href="<?php echo site_url($url) ?>">
 						<?php if ($image) {
 							echo wp_get_attachment_image( $image, $size );
 						} ?>
