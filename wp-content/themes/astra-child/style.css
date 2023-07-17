@@ -486,6 +486,7 @@ footer p {
   color: white;
   border: 1px solid black;
   box-shadow: 2px 3px 0 black;
+  font-size: 0.875rem;
 }
 
 .woocommerce a.button:hover,
